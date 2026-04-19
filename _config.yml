@@ -1,28 +1,22 @@
 # Site settings
-title: Byolio Blog
-SEOTitle: Byolio Blog
+title: Torricelli Blog
+SEOTitle: Torricelli Blog
 header-img: img/home-bg.jpg
-email: blog@byolio.top
-description: "这里是 @Byolio 的个人博客，与你一起发现更大的世界"
-keyword: "byolio"
-url: "https://byolio.github.io" # your host, for absolute URL
-baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
+email: 3218732070@qq.com
+description: "这里是 @Torricelli 的个人博客，记录学习与成长"
+keyword: "Torricelli"
+url: "https://Torricelli.github.io"
+baseurl: ""
 
 # Publish posts or collection documents with a future date.
 future: true
 
 # SNS settings
 RSS: false
-#weibo_username: huxpro
-#zhihu_username: huxpro
-github_username: byolio
-#twitter_username: huxpro
-#facebook_username:  huxpro
-#linkedin_username:  firstname-lastname-idxxxx
+github_username: Torricelli
 youtube_channel: UCVpuQ-wd6TkpX_uScDCgrUA
 
 # Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
 paginate: 10
@@ -35,23 +29,14 @@ exclude:
     "README.md",
     "README.zh.md",
   ]
-anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
-# If you have timezone issue (e.g. #68) in China, uncomment to use this:
-#timezone: CN
+anchorjs: true
 
-# Gems
-# from PR#40, to support local preview for Jekyll 3.0
-# make sure you have this gem installed
-# `$ gem install jekyll-paginate`
 plugins: [jekyll-paginate]
 
 # Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  input: GFM # use Github Flavored Markdown !important
+  input: GFM
   syntax_highlighter_opts:
     span:
       line_numbers: false
@@ -59,39 +44,21 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-# Disqus settings
-disqus_username: byolio-blog
-
-# Netease settings
-netease_comment: false
-
-# Analytics settings
-# Baidu Analytics
-# ba_track_id: [your track id]
-
-# Google Analytics
-ga_track_id: "G-9801M6E4X6" # Format: UA-xxxxxx-xx
-ga_domain: byolio.github.io
-
 # Sidebar settings
-sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "做一个生活上 earnest 的人 <br> email: blog@byolio.top"
-sidebar-avatar: /img/myBlog.png  # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar: true
+sidebar-about-description: "做一个生活上 earnest 的人 <br> email: 3218732070@qq.com"
+sidebar-avatar: /img/myBlog.png
 
 # Featured Tags
-featured-tags: true # whether or not using Feature-Tags
-featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
+featured-tags: true
+featured-condition-size: 1
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
 
-# MathJax rendering for layout:page (e.g. post preview)
+# MathJax rendering for layout:page
 page-mathjax: false
 
 # Friends
-friends:
-  [
-    { title: " Van_Vodkaer", href: "http://blog.vodkaer.com" },
-    { title: " ShallowDream", href: "https://www.cnblogs.com/ShallowDream7933/p/18438517" }
-  ]
+friends: []
