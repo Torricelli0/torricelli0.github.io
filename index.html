@@ -1,46 +1,57 @@
 ---
-layout: page
-description: "「透过技术看见的是 不一样的生活」"
+layout: default
+description: "A personal digital studio for AI, web experiments and notes."
 ---
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {% if post.lang == 'en' %}
-                {{ post.content | strip_html | truncate:300 }}
-            {% else %}
-                {{ post.content | strip_html | truncate:200 }}
-            {% endif %}
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
-{% endfor %}
+<main class="studio-home">
+  <section class="studio-hero">
+    <div class="studio-hero-copy">
+      <p class="studio-kicker">A PERSONAL DIGITAL STUDIO</p>
+      <h1>在代码与想法<br>之间搭一座桥</h1>
+      <p class="studio-lede">AI 专业学生 · 独立开发练习者<br>把实验、文章和正在发生的事情放在这里。</p>
+      <div class="studio-actions">
+        <a class="studio-button studio-button-primary" href="{{ '/about/' | prepend: site.baseurl }}">了解我 <span>→</span></a>
+        <a class="studio-button studio-button-quiet" href="{{ '/archive/' | prepend: site.baseurl }}">浏览文章</a>
+      </div>
+    </div>
+    <div class="studio-orbit" aria-hidden="true">
+      <div class="studio-orbit-ring studio-orbit-ring-one"></div>
+      <div class="studio-orbit-ring studio-orbit-ring-two"></div>
+      <div class="studio-orbit-core"><span>AI</span><small>LAB</small></div>
+    </div>
+  </section>
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+  <section class="studio-grid" aria-label="博客内容">
+    <article class="studio-card studio-featured-card">
+      <div class="studio-card-label">FEATURED NOTE</div>
+      <h2>把学习过程整理成可以回看的东西</h2>
+      <p>这里记录人工智能、网页和那些没有立刻完成的尝试。项目不一定都要产品化，但每次试错都值得留下清晰的痕迹。</p>
+      <a class="studio-card-link" href="{{ '/archive/' | prepend: site.baseurl }}">查看全部文章 <span>→</span></a>
+    </article>
+
+    <article class="studio-card studio-status-card">
+      <div class="studio-card-label">NOW</div>
+      <h2>正在重新整理博客</h2>
+      <div class="studio-status-line"><span class="studio-status-dot"></span> Writing · Learning · Building</div>
+      <div class="studio-tags"><span>AI</span><span>Web</span><span>Notes</span></div>
+    </article>
+
+    <article class="studio-card studio-log-card">
+      <div class="studio-card-label">RECENT LOG</div>
+      {% for post in paginator.posts limit:3 %}
+      <a class="studio-log-item" href="{{ post.url | prepend: site.baseurl }}">
+        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%m.%d" }}</time>
+        <span>{{ post.title }}</span>
+      </a>
+      {% else %}
+      <div class="studio-log-item"><time>NOW</time><span>新的文章正在路上</span></div>
+      {% endfor %}
+    </article>
+
+    <article class="studio-card studio-project-card">
+      <div class="studio-card-label">PROJECTS</div>
+      <a href="{{ '/about/' | prepend: site.baseurl }}"><strong>AI experiments</strong><span>学习与练习</span></a>
+      <a href="{{ '/archive/' | prepend: site.baseurl }}"><strong>Personal notes</strong><span>文章与复盘</span></a>
+    </article>
+  </section>
+</main>
