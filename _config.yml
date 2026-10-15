@@ -1,0 +1,64 @@
+# Site settings
+title: Torricelli Blog
+SEOTitle: Torricelli Blog
+header-img: img/bg.jpg  # 改成了你上传的背景图文件名
+email: 3218732070@qq.com
+description: "这里是 @Torricelli0 的个人博客，记录学习与成长"
+keyword: "Torricelli0"
+url: "https://torricelli0.github.io"  # 改成了你的新用户名域名
+baseurl: ""  # 改名后仓库和用户名一致，这里留空即可
+
+# Publish posts or collection documents with a future date.
+future: true
+
+# SNS settings
+RSS: false
+github_username: Torricelli0  # 改成了你的 GitHub 用户名
+
+
+# Build settings
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude:
+  [
+    "less",
+    "node_modules",
+    "Gruntfile.js",
+    "package.json",
+    "README.md",
+    "README.zh.md",
+  ]
+anchorjs: true
+
+plugins: [jekyll-paginate]
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+# Sidebar settings
+sidebar: true
+sidebar-about-description: "人生如逆旅，我亦是行人 <br> email: 3218732070@qq.com"
+sidebar-avatar: /img/avatar.png  # 改成了你上传的头像文件名
+
+# Featured Tags
+featured-tags: true
+featured-condition-size: 1
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+# MathJax rendering for layout:page
+page-mathjax: false
+
+# Friends
+friends: []

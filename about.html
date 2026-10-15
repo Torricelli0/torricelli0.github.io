@@ -1,0 +1,31 @@
+---
+layout: page
+title: "About"
+description: "「 我们有幸相遇，感谢你接受我的平庸 」"
+header-img: "img/bg-discuss.jpg"
+header-mask: 0.3
+multilingual: true
+---
+
+{% include multilingual-sel.html %}
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+    {% capture about_zh %}{% include about/zh.md %}{% endcapture %}
+    {{ about_zh | markdownify }}
+</div>
+
+<!-- English Version -->
+<div class="en post-container">
+    {% capture about_en %}{% include about/en.md %}{% endcapture %}
+    {{ about_en | markdownify }}
+</div>
+
+<!-- 👇 这里是我给你加的 Utterances 极简评论 -->
+<script src="https://utteranc.es/client.js"
+        repo="Torricelli0/torricelli0.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
