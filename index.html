@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TORRICELLI / LAB — 方向二：Harness 设计语言</title>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* 方向二 · 现实参照：DeepSeek Harness
+   变量抽自 www.deepseek.com 官方 CSS（实测 200）：
+   --ds-color-bg-page:#0a0a0a / --ds-color-text-primary:#fff /
+   --ds-color-text-description:hsla(0,0%,100%,.56) /
+   --ds-color-border-subtle:hsla(0,0%,100%,.08) /
+   --ds-radius-media:12px / --ds-font-body:"DM Sans" */
+:root{
+  --bg:#0a0a0a; --surface:#141414; --surface2:#1c1c1c;
+  --fg:#ffffff; --fg2:rgba(255,255,255,.72); --fg3:rgba(255,255,255,.48);
+  --bd:rgba(255,255,255,.09); --bd2:rgba(255,255,255,.16);
+  --brand:#6799fe; --warn:#e8a45a;
+  --r:12px; --r2:16px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);
+  font-family:"DM Sans",-apple-system,"PingFang SC",sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.65}
+
+/* 顶部导航：极简，玻璃 */
+header{position:sticky;top:0;z-index:20;height:60px;
+  backdrop-filter:blur(12px);background:rgba(10,10,10,.78);
+  border-bottom:1px solid var(--bd);display:flex;align-items:center;
+  padding:0 clamp(20px,4vw,48px);gap:24px}
+.logo{font-family:"Host Grotesk",sans-serif;font-weight:600;font-size:14px;letter-spacing:.2px}
+.logo span{color:var(--fg3);font-weight:400}
+nav{display:flex;gap:28px;margin-left:auto}
+nav a{color:var(--fg3);text-decoration:none;font-size:13px;transition:color .15s var(--ease)}
+nav a:hover,nav a.on{color:var(--fg)}
+
+/* Hero：左侧文字 + 右侧侧栏面板（复刻 Harness 的产品界面感） */
+.hero{min-height:calc(100vh - 60px);display:grid;
+  grid-template-columns:1fr minmax(340px,42%);gap:6vw;
+  align-items:center;padding:60px clamp(20px,6vw,90px);max-width:1440px;margin:0 auto}
+.eyebrow{font-family:"Host Grotesk",sans-serif;font-size:11px;
+  letter-spacing:2.4px;color:var(--brand);text-transform:uppercase;margin-bottom:28px}
+h1{font-family:"Host Grotesk",sans-serif;font-weight:500;
+  font-size:clamp(44px,6.2vw,88px);line-height:1.08;letter-spacing:-2.5px}
+h1 em{font-style:normal;color:var(--fg3)}
+.desc{margin-top:30px;font-size:15px;color:var(--fg2);line-height:1.9;max-width:460px}
+.actions{display:flex;gap:10px;margin-top:38px}
+.btn{padding:11px 18px;border-radius:9px;font-size:13px;font-weight:600;
+  cursor:pointer;text-decoration:none;transition:all .15s var(--ease);border:1px solid transparent}
+.btn.primary{background:#fff;color:#0a0a0a}
+.btn.primary:hover{opacity:.85}
+.btn.ghost{border-color:var(--bd2);color:var(--fg2)}
+.btn.ghost:hover{background:rgba(255,255,255,.05);color:#fff}
+
+/* 侧栏面板：Harness 那种真实 UI */
+.panel{background:var(--surface);border:1px solid var(--bd);
+  border-radius:var(--r2);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.panel-top{height:44px;border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;gap:8px;padding:0 16px}
+.dot{width:9px;height:9px;border-radius:50%;background:#3a3a3a}
+.dot.r{background:#e05c5c}.dot.y{background:#e0b84c}.dot.g{background:#5cbf6a}
+.panel-top .url{margin-left:14px;font-size:11px;color:var(--fg3);font-family:monospace}
+.panel-body{display:grid;grid-template-columns:130px 1fr;min-height:320px}
+.sidebar{border-right:1px solid var(--bd);padding:18px 10px}
+.si{padding:7px 10px;font-size:11.5px;color:var(--fg3);border-radius:7px}
+.si.on{background:var(--surface2);color:var(--fg)}
+.content{padding:24px}
+.content h3{font-size:13px;font-weight:600;margin-bottom:18px;color:var(--fg2)}
+.row{padding:12px 0;border-bottom:1px solid var(--bd);font-size:12.5px;color:var(--fg2)}
+.row:last-child{border:0}
+.row b{color:var(--fg);font-weight:600}
+.row .m{float:right;color:var(--fg3);font-size:11px}
+.prompt{margin:18px 24px 24px;padding:14px;border:1px solid var(--bd);
+  border-radius:var(--r);font-size:12px;color:var(--fg3);
+  display:flex;align-items:center;justify-content:space-between}
+.prompt .send{width:24px;height:24px;border-radius:50%;background:var(--brand);
+  display:grid;place-items:center;color:#0a0a0a;font-weight:700;font-size:12px}
+
+/* 下面：文章区（无卡片堆砌，用分隔线） */
+.section{max-width:1040px;margin:0 auto;padding:80px 24px}
+.section h2{font-family:"Host Grotesk",sans-serif;font-size:24px;font-weight:500;
+  letter-spacing:-.5px;margin-bottom:30px}
+.item{padding:22px 0;border-top:1px solid var(--bd);
+  display:flex;align-items:baseline;gap:22px}
+.item:last-child{border-bottom:1px solid var(--bd)}
+.item .k{font-size:11px;color:var(--fg3);letter-spacing:1px;width:78px;flex:none}
+.item .t{font-size:16px;color:var(--fg)}
+.item .d{margin-left:auto;font-size:12px;color:var(--fg3)}
+footer{max-width:1040px;margin:0 auto;padding:30px 24px 60px;
+  border-top:1px solid var(--bd);color:var(--fg3);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">TORRICELLI <span>/ LAB</span></div>
+  <nav><a class="on" href="#">Home</a><a href="#notes">Notes</a><a href="#about">About</a></nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">A personal studio, built in public</div>
+    <h1>Bridge between<br><em>code &amp; ideas</em></h1>
+    <p class="desc">AI 专业学生，独立开发练习者。<br>把实验、文章和正在发生的事情放在这里。</p>
+    <div class="actions">
+      <a class="btn primary" href="#about">了解我 →</a>
+      <a class="btn ghost" href="#notes">浏览文章</a>
+    </div>
+  </div>
+
+  <div class="panel" aria-label="博客状态面板">
+    <div class="panel-top">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">studio.local / now</span>
+    </div>
+    <div class="panel-body">
+      <div class="sidebar">
+        <div class="si on">Home</div><div class="si">Notes</div>
+        <div class="si">Experiments</div><div class="si">About</div>
+      </div>
+      <div class="content">
+        <h3>Currently</h3>
+        <div class="row"><b>正在写</b><span class="m">01</span></div>
+        <div class="row"><b>正在学</b><span class="m">02</span></div>
+        <div class="row"><b>正在做</b><span class="m">03</span></div>
+        <div class="row"><b>状态</b><span class="m">Writing · Learning · Building</span></div>
+      </div>
+    </div>
+    <div class="prompt"><span>有什么想聊的？</span><span class="send">↑</span></div>
+  </div>
+</section>
+
+<section class="section" id="notes">
+  <h2>最近写的</h2>
+  <div class="item"><span class="k">NOTE</span><span class="t">把学习过程整理成可以回看的东西</span><span class="d">笔记</span></div>
+  <div class="item"><span class="k">LOG</span><span class="t">这个博客正在重新整理</span><span class="d">进行中</span></div>
+  <div class="item"><span class="k">IDEA</span><span class="t">把实验、文章和正在发生的事情放在这里</span><span class="d">随记</span></div>
+</section>
+
+<footer id="about">TORRICELLI / LAB — 方向乙：DeepSeek Harness 设计语言迁移</footer>
+</body>
+</html>
