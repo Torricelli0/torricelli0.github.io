@@ -24,8 +24,16 @@ article{max-width:720px;margin:0 auto;padding:72px 24px 100px}
 .meta .k{color:var(--brand)}
 h1{font-size:clamp(32px,5vw,52px);font-weight:600;line-height:1.25;
   letter-spacing:-1.5px;margin-bottom:24px}
-.dek{font-size:17px;color:var(--fg2);line-height:1.85;
-  padding-bottom:34px;border-bottom:1px solid var(--bd)}
+.dek{font-family:Georgia,"Songti SC","Times New Roman",serif;
+  font-style:italic;font-size:18px;color:var(--fg2);line-height:1.9;
+  padding-bottom:34px;border-bottom:1px solid var(--bd);
+  letter-spacing:.1px}
+/* 章节分隔：细线 + 圆点（杂志感） */
+h2::before{content:"";display:block;width:24px;height:1px;
+  background:var(--brand);margin-bottom:14px;opacity:.6}
+/* 标题字号反差加大 */
+h1{letter-spacing:-2px}
+h2{font-size:26px;letter-spacing:-.6px}
 
 /* 正文排版：只有这几种，够用且统一 */
 h2{font-size:24px;font-weight:600;letter-spacing:-.4px;
