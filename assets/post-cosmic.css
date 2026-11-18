@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap');
 
 :root{
-  --black:#0A0A0A; --cream:#F0EAD8;
-  --blue:#2B4F91; --blue-lt:#5B7FC7;
-  --dim:#8A8272; --rule:rgba(240,234,216,.16);
+  --black:#0C0C0E; --cream:#F7F6F3;
+  --blue:#3A63B8; --blue-lt:#6E9AE8;
+  --dim:#9E9E96; --rule:rgba(255,255,255,.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--black);color:var(--cream);
@@ -33,10 +33,10 @@ header{position:relative;z-index:2;padding:22px 40px;display:flex;
   margin:0 auto 30px;box-shadow:0 0 44px 10px rgba(91,127,199,.45)}
 .kicker{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:4.5px;
   color:var(--blue-lt);text-transform:uppercase;margin-bottom:26px}
-h1{font-size:clamp(40px,6.4vw,74px);font-weight:500;line-height:1.08;
+h1{font-size:clamp(40px,6.4vw,74px);font-weight:500;line-height:1.08;color:#FAFAF8;
   letter-spacing:-1.6px;margin-bottom:24px}
 h1 em{font-style:italic;color:var(--blue-lt)}
-.dek{font-size:20px;line-height:1.7;color:#bdb6a6;max-width:580px;margin:0 auto;font-style:italic}
+.dek{font-size:20px;line-height:1.7;color:#D0D0CA;max-width:580px;margin:0 auto;font-style:italic}
 .rule-dot{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:34px}
 .rule-dot i{width:4px;height:4px;border-radius:50%;background:var(--dim)}
 .rule-dot span{width:56px;height:1px;background:var(--rule)}
@@ -51,8 +51,8 @@ article > h2{font-size:clamp(28px,3.8vw,40px);font-weight:500;line-height:1.18;
 article > h2:first-of-type{border-top:none;padding-top:0}
 .h2num{font-family:"Space Mono",monospace;font-size:11px;color:var(--blue-lt);
   display:block;letter-spacing:3px;margin-bottom:10px;font-weight:400}
-h3{font-size:22px;font-weight:500;margin:34px 0 12px;font-style:italic;color:#d8d1c1}
-p{font-size:19px;line-height:1.8;color:#c4bdb0;margin:0 0 20px}
+h3{font-size:22px;font-weight:500;margin:34px 0 12px;font-style:italic;color:#E6E5E0}
+p{font-size:19px;line-height:1.8;color:#D8D8D2;margin:0 0 20px}
 p strong{color:var(--cream);font-weight:600}
 p code{font-family:"Space Mono",monospace;font-size:15px;color:var(--blue-lt);
   border-bottom:1px dotted rgba(91,127,199,.5)}
@@ -70,6 +70,19 @@ figcaption{font-family:"Space Mono",monospace;font-size:10.5px;color:var(--dim);
 .tags-inline{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px;justify-content:center}
 .tags-inline span{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:1.5px;
   color:var(--dim);border:1px solid var(--rule);border-radius:20px;padding:4px 12px}
+
+
+/* ===== 侧边 TOC ===== */
+.toc{position:fixed;right:clamp(20px,3.5vw,52px);top:120px;width:186px;
+  border-left:1px solid var(--rule);padding-left:18px;z-index:5}
+.toc .tt{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:2.2px;
+  color:var(--dim);margin-bottom:16px;text-transform:uppercase}
+.toc a{display:block;color:var(--dim);text-decoration:none;border:0;
+  font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.3px;
+  padding:7px 0;line-height:1.5;transition:color .15s;opacity:.8}
+.toc a:hover{color:var(--cream);opacity:1}
+.toc a.active{color:var(--blue-lt);opacity:1}
+@media(max-width:1180px){.toc{display:none}}
 
 /* ===== 页脚 ===== */
 footer{position:relative;z-index:2;border-top:1px solid var(--rule);
