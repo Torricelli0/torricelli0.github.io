@@ -17,148 +17,162 @@
   <div class="meta">
     <span class="k">NOTE</span>
     <span>2026-11-18</span>
-    <span>约 14 分钟</span>
+    <span>约 16 分钟</span>
   </div>
 
-  <h1>我的软件与收藏清单<br>从开发环境到摸鱼工具</h1>
-  <p class="dek">把我电脑上 78 个软件和浏览器里 97 个收藏翻出来，只留那些真正解决问题的。每款都回答三件事——它会遇到什么麻烦、怎么解决、为什么不用别的。</p>
+  <h1>我的软件与收藏清单<br>从开发环境到日常效率</h1>
+  <p class="dek">把我电脑上真正在用的软件和收藏夹里反复打开的网站翻出来，按「成对对比」讲——功能相近的放一起，说清楚我为什么选这个、不选那个。</p>
 
   <div class="tags-inline"><span>工具</span><span>效率</span><span>macOS</span><span>收藏</span></div>
 
   <h2 id="s1">写在前面</h2>
 
-  <p>市面上的「软件推荐」大多有个毛病：把官网的功能列表抄一遍，读完你知道了它「支持什么」，但不知道自己「需不需要」。</p>
+  <p>软件推荐最常见的写法是逐个列功能，读完你知道它「支持什么」，还是不知道自己「需不需要」。这篇换个结构——<strong>功能相近的软件成对摆在一起</strong>，讲清楚选择逻辑。</p>
 
-  <p>所以这篇换个写法。每款软件我只回答三个问题：</p>
+  <p>另外先更正一处：我之前写过「Raycast」，但我根本没装它，那是编的。这篇只写我确认在用的。</p>
 
+  <h2 id="s2">一、AI 工具：成对比</h2>
+
+  <h3>DeepSeek Harness &amp; Trae CN — 两种 AI 工作方式</h3>
+  <p><strong>痛点</strong>：AI 编程工具有两类完全不同的用法，选错方向会浪费很多时间。</p>
+  <p><strong>怎么解决</strong>：<strong>DSH</strong>（DeepSeek 官方 Agent Harness）是"Everything is a Plugin"的 Agent 框架——所有能力都是插件，我用它做 skill 开发、插件市场和长任务编排。<strong>Trae CN</strong> 是字节的 AI IDE，更接近 Cursor 那种"写代码时的伴随式补全"。</p>
+  <p><strong>对比</strong>：</p>
   <ul>
-    <li><strong>什么情况下你会需要它</strong>（痛点）</li>
-    <li><strong>它怎么解决的</strong>（机制，一句）</li>
-    <li><strong>为什么不用同类</strong>（差异点）</li>
+    <li><strong>DSH</strong>：管「让 AI 自己干活」——插件、skill、MCP、多 agent 协作。适合搭工作流。</li>
+    <li><strong>Trae</strong>：管「我写代码时 AI 帮我」——补全、chat、代码生成。适合日常编码。</li>
   </ul>
+  <p>两个不冲突：Trae 是编辑器，DSH 是 Agent 运行时。</p>
 
-  <p>能说清楚这三条的留下，说不清的删了——这也是我电脑上现在只剩这些的原因。</p>
+  <h3>Cursor — 把 AI 装进编辑器骨架</h3>
+  <p><strong>痛点</strong>：用网页版 ChatGPT 写代码要来回复制——描述需求、复制代码、贴回编辑器、报错再复制出去。</p>
+  <p><strong>怎么解决</strong>：AI 能看到当前文件、整个项目目录、报错信息。选中代码按 <code>Cmd+K</code> 说「改成分页查询」，它直接改在原位。</p>
+  <p><strong>对比</strong>：和 Trae 是同类（都是 AI IDE）。我两个都装了，Cursor 的上下文理解更成熟，Trae 国内访问更稳。具体用哪个看当时网络和任务。</p>
 
-  <h2 id="s2">一、桌面软件</h2>
+  <h3>CC Switch &amp; Magpie — 两个"网关/切换器"，别搞混</h3>
+  <p><strong>痛点</strong>：Claude Code 和 Codex 这类工具默认只认官方端点。想换模型、换供应商、或走本地网关时，需要一个中间层。</p>
+  <p><strong>怎么解决</strong>：这两个都是"改配置指向本地网关"的工具，但管的对象不同：</p>
+  <ul>
+    <li><strong>CC Switch</strong>：主要管 <strong>Claude Code 的供应商切换</strong>。它会改写 Claude 的配置，让请求转发到 DeepSeek/WorkBuddy 等。端口 <code>15721</code>，配置在 <code>~/.cc-switch/</code>。</li>
+    <li><strong>Magpie</strong>：管<strong>所有 agent 的模型选择</strong>（Claude / Codex / DSH），本地网关端口 <code>3425</code>。它还带模型目录、profiles 快照、备份等功能。</li>
+  </ul>
+  <p><strong>对比与坑</strong>：CC Switch 更专注 Claude，Magpie 更全面。但两者都会改写 agent 配置——如果同时用，很容易互相覆盖。我之前就踩过：Codex 的 <code>openai_base_url</code> 被 Magpie 指向了本地 3425，导致想用官方模型时用不了。<strong>结论：同一个 agent 只让一个工具接管。</strong></p>
 
-  <h3><span class="swname">Obsidian</span> <span class="swdesc">— 让笔记变成能被 AI 直接读的知识库</span></h3>
-  <p><strong>痛点</strong>：笔记散在印象笔记、飞书文档、微信收藏里。想找三个月前记的一个概念，靠关键词翻半天；想让 AI 帮你整理，还得一篇篇复制粘贴。</p>
-  <p><strong>怎么解决</strong>：所有笔记就是本地文件夹里的 <code>.md</code> 文件。AI 能直接读这个文件夹——你说「把我关于 RAG 的笔记归纳成一篇」，它扫目录就能做。双链和图谱让「RAG」「向量检索」「embedding」这些概念自动连成网，点一个跳出一串相关的。</p>
-  <p><strong>为什么是它</strong>：Notion 的笔记在云端，AI 要读得走 API 还有额度；印象笔记导出格式混乱。Obsidian 的本地文件夹是<strong>任何 AI 工具都能直接访问</strong>的格式——这是它在 AI 时代重新变热的原因。我现在有 382 篇笔记在里面。</p>
+  <h2 id="s3">二、写作与知识：Obsidian &amp; Typora</h2>
 
-  <h3><span class="swname">Typora</span> <span class="swdesc">— 写长文时不被预览窗分心</span></h3>
-  <p><strong>痛点</strong>：用普通编辑器写 Markdown，左边源码右边预览，一半屏幕浪费了，而且眼睛要在两边来回跳。</p>
-  <p><strong>怎么解决</strong>：边写边渲染，所见即所得。你敲 <code>## 标题</code>，它立刻变成标题样式，但光标还在文本流里。</p>
-  <p><strong>为什么是它</strong>：Obsidian 也能写，但它更偏「知识体系」——文件多了以后界面复杂。Typora 只做一件事：专注写这一篇。<strong>我拿 Obsidian 管知识库，拿 Typora 写要发出去的文章。</strong></p>
+  <h3>Obsidian — 让笔记变成能被 AI 直接读的知识库</h3>
+  <p><strong>痛点</strong>：笔记散在印象笔记、飞书文档、微信收藏里。想找三个月前记的概念靠关键词翻半天；想让 AI 整理还得一篇篇复制。</p>
+  <p><strong>怎么解决</strong>：所有笔记就是本地文件夹里的 <code>.md</code> 文件。AI 能直接读这个文件夹——你说「把我关于 RAG 的笔记归纳成一篇」，它扫目录就能做。双链和图谱让概念自动连成网。</p>
+  <p><strong>对比</strong>：Notion 笔记在云端，AI 要读得走 API 还有额度；印象笔记导出格式混乱。Obsidian 的本地文件夹是<strong>任何 AI 工具都能直接访问</strong>的格式——这是它在 AI 时代重新变热的原因。我现在有 382 篇笔记。</p>
 
-  <h3><span class="swname">iTerm2</span> <span class="swdesc">— 让终端变成能干活的地方</span></h3>
-  <p><strong>痛点</strong>：macOS 自带 Terminal 只有一个窗口。想同时看日志、跑测试、改配置，得开三个窗口再手动摆位置；输出太长往上滚就找不到了。</p>
-  <p><strong>怎么解决</strong>：分屏（一屏切四块）、<code>Cmd+F</code> 搜历史输出、热键唤出半透明窗口（写代码时随时瞄日志）。配置存成文件，换电脑复制过去就是原样。</p>
-  <p><strong>为什么是它</strong>：系统 Terminal 不支持分屏和搜索；Warp 更现代但要登录账号。iTerm2 免费、无账号、配置可迁移。</p>
+  <h3>Typora — 写长文时不被预览窗分心</h3>
+  <p><strong>痛点</strong>：普通编辑器写 Markdown，左边源码右边预览，一半屏幕浪费，眼睛来回跳。</p>
+  <p><strong>怎么解决</strong>：边写边渲染，所见即所得。敲 <code>## 标题</code> 立刻变成标题样式。</p>
+  <p><strong>对比</strong>：Obsidian 也能写，但它偏「知识体系」，文件多了界面复杂。Typora 只做一件事：专注写这一篇。<strong>我用 Obsidian 管知识库，Typora 写要发出去的文章。</strong></p>
 
-  <h3><span class="swname">Cursor</span> <span class="swdesc">— 把 AI 装进编辑器骨架里</span></h3>
-  <p><strong>痛点</strong>：用 ChatGPT 写代码要来回复制——describe 需求、复制代码、贴回编辑器、报错再复制出去。</p>
-  <p><strong>怎么解决</strong>：AI 能看到你当前文件、整个项目目录、报错信息。选中一段代码按 <code>Cmd+K</code> 说「改成分页查询」，它直接改在原位，不用复制。</p>
-  <p><strong>为什么是它</strong>：VS Code 装 Copilot 插件也能补全，但「理解整个项目上下文再改」这件事不如 Cursor 原生做得顺。缺点是它基于 VS Code 分支，插件生态偶尔跟不上。</p>
+  <h2 id="s4">三、界面与输入：小而美的工具</h2>
 
-  <h3><span class="swname">Sublime Text</span> <span class="swdesc">— 打开大文件不卡</span></h3>
-  <p><strong>痛点</strong>：几百兆的日志、CSV、JSON，用 VS Code 或 Cursor 打开会卡死，风扇狂转。</p>
-  <p><strong>怎么解决</strong>：原生代码写的，内存映射加载，几十兆文件秒开。</p>
-  <p><strong>为什么是它</strong>：不用它写项目，也不装插件，纯粹当「看一眼大文件」的工具。这个场景替代品很少。</p>
+  <h3>Hidden Bar — 让菜单栏清爽</h3>
+  <p><strong>痛点</strong>：Mac 顶部菜单栏装多了图标，挤成一团，还占屏幕。</p>
+  <p><strong>怎么解决</strong>：在菜单栏插一条分隔线，右边的图标点一下折叠、再点展开。</p>
+  <p><strong>对比</strong>：系统自带没有这功能；其它菜单栏管理工具要么收费要么太重。Hidden Bar 免费、极简、只干这一件事。</p>
 
-  <h3><span class="swname">GitHub Desktop</span> <span class="swdesc">— 复杂 Git 操作时少动脑</span></h3>
-  <p><strong>痛点</strong>：命令行提交当然快，但看到 diff 要改哪几行、只想提交一部分文件、或者处理合并冲突时，纯文本界面容易出错。</p>
-  <p><strong>怎么解决</strong>：图形化显示每个文件的改动行，能勾选只提交某个文件、甚至某个 hunk。</p>
-  <p><strong>为什么是它</strong>：我两个都用——日常 commit 用命令行快，复杂操作开它。<strong>它不是命令行替代品，是互补。</strong></p>
+  <h3>青简输入法 — 中文输入</h3>
+  <p><strong>痛点</strong>：系统自带输入法词库旧、候选词不准，第三方输入法又常带广告和多余功能。</p>
+  <p><strong>怎么解决</strong>：一个轻量的中文输入法，词库和候选体验更适合日常中文写作。</p>
+  <p><strong>说明</strong>：输入法装在 <code>~/Library/Input Sources/</code> 而不是 <code>/Applications</code>，所以你在应用列表里找不到它。官网 <code>qingjian.app</code> 下载。</p>
 
-  <h3><span class="swname">Docker Desktop</span> <span class="swdesc">— 不在本机装一堆数据库</span></h3>
-  <p><strong>痛点</strong>：想跑一下别人的项目，README 说要 MySQL 5.7 + Redis 6 + Python 3.9。在你已经装了 MySQL 8 和 Python 3.12 的机器上，这是灾难。</p>
-  <p><strong>怎么解决</strong>：每个项目一个容器，依赖全打包在里面。跑起来 <code>docker compose up</code>，用完 <code>down</code>，本机环境干净如初。</p>
-  <p><strong>为什么是它</strong>：Colima 更轻但 GUI 缺失、排查问题要命令行；OrbStack 更快但要付费。Docker Desktop 免费版够用，图形界面看容器状态直观。</p>
+  <h2 id="s5">四、下载与网络</h2>
 
-  <h3><span class="swname">Raycast</span> <span class="swdesc">— Spotlight 的加强版</span></h3>
-  <p><strong>痛点</strong>：系统 Spotlight 只能搜文件和应用。想查剪贴板历史、算个数、看时区、直接开 GitHub 仓库，都得切到浏览器或别的 App。</p>
-  <p><strong>怎么解决</strong>：一个快捷键唤出，能装扩展。我常用的是：剪贴板历史（找回十分钟前复制的东西）、窗口管理（快捷键切左右分屏）、快速计算。</p>
-  <p><strong>为什么是它</strong>：Alfred 是老牌但免费版功能受限；系统 Spotlight 不能装扩展。Raycast 免费版已经覆盖 90% 的日常需求。</p>
+  <h3>Gopeed — 多线程下载器，配合油猴脚本</h3>
+  <p><strong>痛点</strong>：别人分享 20GB 网盘资源，转存提示空间不足；或浏览器下载大文件经常断。</p>
+  <p><strong>怎么解决</strong>：<strong>先纠正一个常见误解——Gopeed 本身不能解析网盘分享链接。</strong>真实流程两步：先用油猴脚本（「网盘直链下载助手」或「LinkSwift」，装一个就行）从分享页提取直链，再把直链交给 Gopeed 下载。Gopeed 只负责拿到 URL 后高速稳定地下载。</p>
+  <p><strong>对比</strong>：浏览器下载大文件容易断、不支持多线程续传；IDM 收费且 BT/磁力支持弱。Gopeed 同时处理 HTTP、BT、磁力、ed2k，开源免费。但网盘场景<strong>必须配合油猴脚本</strong>，单靠它做不到。</p>
 
-  <h2 id="s3">二、下载与网络</h2>
-
-  <h3><span class="swname">Gopeed</span> <span class="swdesc">— 多线程下载器，配合油猴脚本处理网盘资源</span></h3>
-  <p><strong>痛点</strong>：别人分享了一个 20GB 的网盘资源，你点「转存」提示「空间不足」；或者浏览器下载大文件经常断，重头再来。</p>
-  <p><strong>怎么解决</strong>：这里要澄清一个我以前写错的点——<strong>Gopeed 本身不能直接解析网盘分享链接</strong>。真实流程是两步：先用油猴脚本（如「网盘直链下载助手」「LinkSwift」）从分享页提取出直链，再把直链交给 Gopeed 下载。Gopeed 只负责「拿到一个 URL 后高速稳定地下载」，不负责「从分享页解出这个 URL」。</p>
-  <p><strong>为什么是它</strong>：浏览器下载大文件容易断、不支持多线程续传；IDM 收费且对 BT/磁力支持弱。Gopeed 一个软件同时处理 HTTP、BT、磁力，跨平台，开源免费，多线程续传稳。但<strong>网盘场景必须配合油猴脚本</strong>，单靠它做不到。</p>
-
-  <h3><span class="swname">Clash Verge Rev</span> <span class="swdesc">— 代理客户端</span></h3>
+  <h3>Clash Verge Rev — 代理客户端</h3>
   <p><strong>痛点</strong>：需要按规则分流（国内直连、国外走代理），手动改系统代理太麻烦。</p>
   <p><strong>怎么解决</strong>：读配置文件里的规则，自动判断每个域名走哪条线。</p>
-  <p><strong>为什么是它</strong>：Clash for Windows 已停更；这个是基于 Tauri 重写的续作，Mac/Win/Linux 通用，界面更现代。具体配置各家方案不同，自己解决。</p>
+  <p><strong>对比</strong>：Clash for Windows 已停更；这个是基于 Tauri 的续作，Mac/Win/Linux 通用。这里只提软件本身，具体配置各家方案不同。</p>
 
-  <h2 id="s4">三、浏览器扩展</h2>
+  <h2 id="s6">五、浏览器扩展</h2>
 
-  <h3><span class="swname">沉浸式翻译</span> <span class="swdesc">— 看英文文档不切标签页</span></h3>
+  <h3>沉浸式翻译 — 看英文文档不切标签页</h3>
   <p><strong>痛点</strong>：读英文技术文档时，遇到不认识的段落要复制到翻译网站，翻完再回来，节奏全断。</p>
   <p><strong>怎么解决</strong>：把译文<strong>插在原文下方</strong>，不替换原文。你能对照着看，术语不会因为翻译变形而看不懂。支持 PDF、字幕、电子书。</p>
-  <p><strong>为什么是它</strong>：浏览器自带翻译会整页替换，术语翻译经常错得离谱。Chrome 自带翻译还不支持 PDF 和字幕。</p>
+  <p><strong>对比</strong>：浏览器自带翻译会整页替换，术语经常错得离谱，而且不支持 PDF 和字幕。</p>
 
-  <h3><span class="swname">uBlock Origin Lite</span> <span class="swdesc">— 页面加载快一点</span></h3>
+  <h3>uBlock Origin Lite — 页面加载快一点</h3>
   <p><strong>痛点</strong>：很多网站广告和追踪脚本比正文还大，页面卡、流量白耗。</p>
   <p><strong>怎么解决</strong>：在页面加载前拦截请求，不下载那些脚本。</p>
-  <p><strong>为什么是它</strong>：Manifest V3 版本，比原版轻，对页面性能影响小。同类 AdBlock Plus 默认放行「可接受广告」，这个规则更严格。</p>
+  <p><strong>对比</strong>：Manifest V3 版本，比原版轻。同类 AdBlock Plus 默认放行「可接受广告」，这个规则更严格。</p>
 
-  <h3><span class="swname">Bitwarden</span> <span class="swdesc">— 密码不该记在脑子里</span></h3>
+  <h3>Bitwarden — 密码不该记在脑子里</h3>
   <p><strong>痛点</strong>：几十个网站用不同密码记不住，用同一个又不安全。</p>
   <p><strong>怎么解决</strong>：浏览器扩展自动填充，主密码只记一个。开源自托管，数据可以自己存。</p>
-  <p><strong>为什么是它</strong>：1Password 体验更好但收费；Chrome 自带密码管理绑定浏览器，换浏览器就没了。Bitwarden 免费版功能完整，跨浏览器跨设备。</p>
+  <p><strong>对比</strong>：1Password 体验更好但收费；Chrome 自带密码管理绑定浏览器，换浏览器就没了。Bitwarden 免费版功能完整。</p>
 
   <h3>篡改猴（Tampermonkey）— 给网页打补丁</h3>
-  <p><strong>痛点</strong>：某些网站功能不全或不好用（GitHub 全英文界面、B 站不能批量下载），但你没法改它的代码。</p>
-  <p><strong>怎么解决</strong>：装用户脚本，让脚本在页面加载后修改 DOM。我装了 GitHub 汉化、B 站下载、网盘直链几个。</p>
-  <p><strong>为什么是它</strong>：Violentmonkey 是同类替代，功能差不多。选它只是因为用户基数大，脚本兼容性好。</p>
+  <p><strong>痛点</strong>：某些网站功能不全或不好用（GitHub 全英文、B站不能批量下载、网盘分享页不显示直链），但你改不了它的代码。</p>
+  <p><strong>怎么解决</strong>：装用户脚本，在页面加载后修改 DOM。我装的是：<strong>网盘直链下载助手 / LinkSwift</strong>（二选一，给 Gopeed 提供直链）、GitHub 汉化、B 站下载。</p>
+  <p><strong>对比</strong>：Violentmonkey 是同类替代，功能差不多。选它只是因为用户基数大，脚本兼容性好。</p>
 
-  <h2 id="s5">四、收藏的网站</h2>
+  <h2 id="s7">六、收藏的网站（按你的分类）</h2>
 
-  <p>浏览器里 97 个书签，大部分是求职和课程相关的临时链接。真正反复打开的是这几个：</p>
-
-  <h3>查概念 / 八股</h3>
+  <h3>文档与格式转换</h3>
   <ul>
-    <li><strong>小林 coding</strong> — 图解计算机网络、操作系统、MySQL。面试前复习用，比啃教材快</li>
-    <li><strong>CodeTop</strong> — 按公司分类的高频面试题。刷题前先看这里定优先级，避免盲目刷</li>
-    <li><strong>OI Wiki</strong> — 算法竞赛知识库，讲得比大多数博客系统</li>
+    <li><strong>iLovePDF / 在线压缩 PDF / SmallPDF</strong> — PDF 合并、压缩、转 Word。论文排版高频用</li>
+    <li><strong>在线图像转换器 / remove.bg</strong> — 图片格式转换、一键抠背景</li>
+    <li><strong>FreeConvert / 文档转换器 / 超级文本工具</strong> — 通用格式转换、批量文本处理</li>
+    <li><strong>Word/PPT 代码在线高亮</strong> — 把代码块美化后贴进文档</li>
   </ul>
 
-  <h3>找资源 / 工具</h3>
+  <h3>AI 与工具资源</h3>
   <ul>
-    <li><strong>iLovePDF</strong> — PDF 合并、压缩、转格式。论文排版时高频用</li>
-    <li><strong>wallhaven</strong> — 高质量壁纸站，按标签筛。比搜索引擎找图靠谱</li>
-    <li><strong>remove.bg</strong> — 一键抠背景，做演示图时省事</li>
-    <li><strong>Kaggle</strong> — 数据集和 notebook。学机器学习时找练手数据</li>
+    <li><strong>The Agent Skills</strong>（skills.sh）— Agent skill 市场，找可复用的技能包</li>
+    <li><strong>AI 工具知识库</strong>（ai.codefather.cn）— AI 工具收录</li>
+    <li><strong>Google AI Studio</strong> — Gemini 调试与 API 试验</li>
   </ul>
 
-  <h3>看论文 / 长文</h3>
+  <h3>学习与计算</h3>
   <ul>
-    <li><strong>arXiv</strong> — 预印本，看最新研究先来这里</li>
-    <li><strong>lintsinghua.github.io</strong> — 有人写的 Claude Code 架构深度剖析，值得读</li>
-    <li><strong>Hellogithub</strong> — 定期推荐有趣的开源项目</li>
+    <li><strong>Desmos</strong> — 在线图形计算器，画函数图像比手算直观</li>
+    <li><strong>小林 coding / CodeTop / OI Wiki</strong> — 八股图解、高频面试题、算法知识库</li>
+    <li><strong>自学 SQL 网 / SQLZoo / 洛谷</strong> — SQL 交互练习、算法刷题</li>
+    <li><strong>Kaggle</strong> — 数据集和 notebook，找练手数据</li>
   </ul>
 
-  <h2 id="s6">五、一点原则</h2>
+  <h3>壁纸与娱乐</h3>
+  <ul>
+    <li><strong>免费清新壁纸 / 动漫静态壁纸 / 精美静态壁纸（wallhaven）</strong> — 静态壁纸站</li>
+    <li><strong>动态壁纸（motionbgs）</strong> — 动态壁纸素材</li>
+    <li><strong>免费音乐下载（gequhai）</strong> — 音乐下载</li>
+  </ul>
 
-  <p>写这份清单的过程本身比清单有用。我一边写一边问自己「为什么留着它」，答不上来的就删了——这轮删掉了 6 个。</p>
+  <h3>文献与社区</h3>
+  <ul>
+    <li><strong>arXiv / IEEE Xplore / 中国知网</strong> — 预印本、工程论文、中文文献</li>
+    <li><strong>HelloGitHub / 掘金 / 博客园</strong> — 开源推荐、技术社区</li>
+  </ul>
 
-  <p>现在留下的每个都能说出：<strong>什么场景下我会打开它</strong>。说不出这个的，要么是我忘了它存在，要么它本来就不该装。</p>
+  <h2 id="s8">七、一点原则</h2>
 
-  <blockquote>工具的多少不代表能力。能说清楚「为什么留着它」，才算真的在用。</blockquote>
+  <p>写这份清单的过程本身比清单有用。我一边写一边问自己「为什么留着它」，答不上来的就删了。</p>
+
+  <p>而且这次多了个检查：写之前先确认软件<strong>真的装了</strong>。上一版我写了 Raycast，其实根本没装——这种"想当然"比漏掉更糟。</p>
+
+  <blockquote>工具的多少不代表能力。能说清楚「为什么留着它」，并且确认它真的存在，才算真的在用。</blockquote>
 
 </article>
 
 <aside class="toc">
   <div class="tt">目录</div>
   <a href="#s1">写在前面</a>
-  <a href="#s2">桌面软件</a>
-  <a href="#s3">下载与网络</a>
-  <a href="#s4">浏览器扩展</a>
-  <a href="#s5">收藏的网站</a>
-  <a href="#s6">一点原则</a>
+  <a href="#s2">AI 工具对比</a>
+  <a href="#s3">Obsidian &amp; Typora</a>
+  <a href="#s4">界面与输入</a>
+  <a href="#s5">下载与网络</a>
+  <a href="#s6">浏览器扩展</a>
+  <a href="#s7">收藏的网站</a>
+  <a href="#s8">一点原则</a>
 </aside>
 
 <footer>
