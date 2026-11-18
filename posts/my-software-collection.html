@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的软件与收藏清单：从开发环境到摸鱼工具 — TORRICELLI / LAB</title>
+<link rel="stylesheet" href="../assets/post.css">
+</head>
+<body>
+<div id="progress"></div>
+<header>
+  <div class="logo">TORRICELLI <span>/ LAB</span></div>
+  <a class="back" href="../index.html">← 返回首页</a>
+</header>
+
+<article>
+  <div class="meta">
+    <span class="k">NOTE</span>
+    <span>2026-11-18</span>
+    <span>约 12 分钟</span>
+  </div>
+
+  <h1>我的软件与收藏清单<br>从开发环境到摸鱼工具</h1>
+  <p class="dek">把我 <a href="https://github.com/Torricelli0/dotfiles">dotfiles</a> 里的 78 个软件和浏览器里 69 个收藏翻出来，挑那些真正在用的。每个只说清楚一件事：它解决什么问题。</p>
+
+  <div class="tags-inline"><span>工具</span><span>效率</span><span>macOS</span><span>收藏</span></div>
+
+  <h2 id="s1">写在前面</h2>
+
+  <p>这份清单不是「十大必装软件」那种。它是我自己电脑上真实在跑的，附上为什么留着它。有些你可能用不上，但至少能知道有这么个东西存在。</p>
+
+  <p>原则有三条：<strong>只装解决具体问题的</strong>、<strong>能免费的不用付费的</strong>、<strong>装完三个月没打开就删</strong>。</p>
+
+  <h2 id="s2">桌面软件：开发与效率</h2>
+
+  <h3>1. iTerm2 — 终端</h3>
+  <p>macOS 自带 Terminal 够用，但 iTerm2 的分屏、搜索、热键唤出窗口是回不去的东西。配置全在 <code>~/.config/iterm2</code>，跟着 dotfiles 走。</p>
+
+  <h3>2. Cursor — 编辑器</h3>
+  <p>VS Code 的分支，把 AI 补全和 Chat 做进了编辑器骨架里。我主要用它写代码和改配置。插件和设置走 Settings Sync，换机器登录账户就回来了。</p>
+
+  <h3>3. Sublime Text — 备用编辑器</h3>
+  <p>打开几十兆的日志、CSV、JSON 时比任何 Electron 编辑器都快。不用它写项目，只用来「看一眼大文件」。</p>
+
+  <h3>4. GitHub Desktop — 图形化 Git</h3>
+  <p>命令行当然更快，但可视化看 diff、挑文件提交、处理冲突时省脑子。我两个都用：日常 commit 用命令行，复杂操作开它。</p>
+
+  <h3>5. Docker Desktop — 容器</h3>
+  <p>跑数据库、跑别人的项目、复现环境问题。有了它就不用在本机装一堆 MySQL、Redis。</p>
+
+  <h3>6. Raycast（可选替代 Spotlight）</h3>
+  <p>比 Spotlight 强的地方是它能装扩展：剪贴板历史、窗口管理、快速计算、直接搜 GitHub。免费版已经够用。</p>
+
+  <h3>7. Hidden Bar — 菜单栏折叠</h3>
+  <p>Mac 顶部图标越装越多，它会插一条分隔线，把右边的图标折叠起来。点一下展开，再点隐藏。视觉上干净很多。</p>
+
+  <h2 id="s3">下载与网络</h2>
+
+  <h3>8. Gopeed — 下载器</h3>
+  <p>支持 HTTP、BitTorrent、磁力链接。我主要用它下载一些公开的镜像文件和大体积素材。Go 写的，跨平台，内存占用比同类低。</p>
+
+  <h3>9. Clash Verge Rev — 代理客户端</h3>
+  <p>开源的 Clash 图形界面，配置从订阅导入。这里只提软件本身——具体配置和订阅各家不同，自己解决。</p>
+
+  <h2 id="s4">笔记与知识管理</h2>
+
+  <h3>10. Obsidian — 本地笔记库</h3>
+  <p>所有笔记存成本地 markdown 文件，不上传任何人服务器。双链、图谱、插件生态是它的强项。我目前有 382 篇笔记在里面。</p>
+
+  <h3>11. Typora — 即时渲染 Markdown</h3>
+  <p>写长文时用。没有预览窗，边写边渲染，所见即所得。比 Obsidian 更专注写作本身。</p>
+
+  <p>这两个搭配用：<strong>Obsidian 管知识体系，Typora 管单篇写作。</strong></p>
+
+  <h2 id="s5">浏览器扩展（从 12 个里挑 6 个）</h2>
+
+  <h3>12. uBlock Origin Lite — 广告拦截</h3>
+  <p>Manifest V3 版本，比原版轻。拦广告和追踪器，网页加载更快。</p>
+
+  <h3>13. 沉浸式翻译 — 双语对照</h3>
+  <p>看英文文档时，它把译文插在原文下方，不替换原文。技术文档、论文、GitHub README 都靠它。</p>
+
+  <h3>14. Bitwarden — 密码管理</h3>
+  <p>开源自托管选项，免费版够用。所有密码、API key、订阅链接都存这里。</p>
+
+  <h3>15. 篡改猴（Tampermonkey）— 用户脚本</h3>
+  <p>给网页打补丁的容器。我装了 GitHub 汉化、B 站下载、网盘直链这几个脚本。</p>
+
+  <h3>16. 牛客网申助手 — 校招填表</h3>
+  <p>自动填写招聘网站的表单。校招季省时间用的，非求职期可以关掉。</p>
+
+  <h3>17. ChatGPT / Claude — AI 侧边栏</h3>
+  <p>不用切标签页就能问 AI。两个都装是因为不同任务用不同模型。</p>
+
+  <h2 id="s6">收藏的网站</h2>
+
+  <h3>技术类</h3>
+  <ul>
+    <li><strong>小林 coding</strong> — 图解计算机网络、操作系统、MySQL，复习八股的图文资料</li>
+    <li><strong>CodeTop</strong> — 按公司分类的高频面试题，刷题前先看这里排优先级</li>
+    <li><strong>卡码笔记</strong> — 程序员八股文整理，配合卡码网的题目用</li>
+    <li><strong>菜鸟教程</strong> — 语法速查，不用翻官方文档那么长</li>
+    <li><strong>自学 SQL 网</strong> — 交互式练 SQL，边写边看结果</li>
+    <li><strong>洛谷 / LeetCode</strong> — 刷题平台，按难度和标签筛题</li>
+  </ul>
+
+  <h3>工具类</h3>
+  <ul>
+    <li><strong>iLovePDF</strong> — 合并、压缩、转格式，PDF 相关的杂活基本都能干</li>
+    <li><strong>remove.bg</strong> — 一键抠背景，做演示图时用</li>
+    <li><strong>Desmos</strong> — 在线图形计算器，画函数图像比手算直观</li>
+    <li><strong>SuperText</strong> — 批量文本处理，去重、排序、格式转换</li>
+    <li><strong>wallhaven</strong> — 高质量壁纸站，按标签筛</li>
+    <li><strong>Kaggle</strong> — 数据集和 notebook，学机器学习时找练手数据</li>
+  </ul>
+
+  <h3>资料与文献</h3>
+  <ul>
+    <li><strong>arXiv</strong> — 预印本论文，看最新研究先来这里</li>
+    <li><strong>IEEE Xplore</strong> — 工程类正式发表论文</li>
+    <li><strong>中国知网</strong> — 中文文献，写论文查引用</li>
+    <li><strong>HelloGitHub</strong> — 定期推荐有趣的开源项目</li>
+    <li><strong>掘金</strong> — 中文技术社区，实践类文章多</li>
+  </ul>
+
+  <h2 id="s7">一点原则</h2>
+
+  <p>装软件这件事，我慢慢形成了一个习惯：<strong>先想清楚要解决什么问题，再去找工具</strong>。反过来（看到推荐就装）的结果是硬盘塞满、菜单栏拥挤、每次重装系统都要重来一遍。</p>
+
+  <p>所以现在我会把每个软件的「为什么留着」写进 dotfiles。三个月没打开过的，删掉。留下来的每个都能说出用途。</p>
+
+  <blockquote>工具的多少不代表能力，能说清楚为什么留着它才是。</blockquote>
+
+  <hr>
+
+  <p style="color:var(--fg3);font-size:14px">完整的软件清单（78 个，含安装方式和 GitHub 地址）在 <a href="https://github.com/Torricelli0/dotfiles">dotfiles 仓库</a> 的 <code>APPS-CATALOG.md</code>。</p>
+
+</article>
+
+<aside class="toc">
+  <div class="tt">目录</div>
+  <a href="#s1">写在前面</a>
+  <a href="#s2">桌面软件</a>
+  <a href="#s3">下载与网络</a>
+  <a href="#s4">笔记与知识管理</a>
+  <a href="#s5">浏览器扩展</a>
+  <a href="#s6">收藏的网站</a>
+  <a href="#s7">一点原则</a>
+</aside>
+
+<footer>
+  <span>© TORRICELLI / LAB · 在代码与想法之间搭一座桥</span>
+  <span><a href="../index.html">← 返回首页</a></span>
+  <a class="gh" href="https://github.com/Torricelli0" aria-label="GitHub"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var pr=document.getElementById('progress');
+  if(pr)pr.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  var secs=document.querySelectorAll('article h2[id]');
+  var links=document.querySelectorAll('.toc a');
+  var cur='';
+  secs.forEach(function(s){if(s.getBoundingClientRect().top<160)cur=s.id});
+  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
+});
+</script>
+</body>
+</html>
