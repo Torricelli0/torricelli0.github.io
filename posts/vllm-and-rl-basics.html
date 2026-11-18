@@ -1,7 +1,137 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>vLLM 册子、Infra 分层，与 RL 微调名词梳理 — TORRICELLI / LAB</title>
-<link rel="stylesheet" href="../assets/post-cosmic.css?v=5"></head><body>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CONSTRAINT BRIEF — refactoring-ui skill Workflow B, step 3
+   (written before markup; see SKILL.md "emit a short constraint brief")
+
+   Content ranking:
+     PRIMARY   → 文章正文（vLLM / Infra / RL 概念梳理）
+     SECONDARY → 章节标题、页码、元信息
+     TERTIARY  → 轨道背景、标签、页脚
+     ONE PRIMARY ACTION → 返回首页（.back）
+
+   Token values (Cosmic system preserved — "existing system wins"):
+     spacing scale : 4 8 12 16 24 32 48 64 96
+     type scale    : 1.25 ratio (12 / 15 / 19 / 24 / 30 / 38 / 48)
+     text colors   : 3 max  → #F7F6F3 / #D8D8D2 / #9E9E96
+     font weights  : 2 max  → 400 / 500
+     measure       : 640px (~40 CJK chars/line)
+     contrast      : body 13.65:1, dim 7.24:1, link 6.93:1 (all §5.6 pass)
+     line-height   : heading 1.14 / body 1.76 (§4.5)
+     personality   : retro-futurist catalogue · cool grey · comfortable
+   Prohibitions: no pure black/white, no >3 text colors, no arbitrary
+   pixel spacing, no more than one primary action, borders only 1px hairline.
+   ============================================================ */
+
+:root{
+  /* spacing scale (§3.2) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+  --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+
+  /* Cosmic identity preserved */
+  --bg:#0C0C0E;
+  --fg:#F7F6F3;
+  --body:#D8D8D2;
+  --dim:#9E9E96;
+  --blue:#6E9AE8;
+  --blue-deep:#3A63B8;
+  --rule:rgba(255,255,255,.12);
+  --mono:"Space Mono",ui-monospace,monospace;
+  --serif:"Cormorant Garamond",Georgia,"Songti SC",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);line-height:1.76;
+  font-family:var(--serif);font-size:19px;
+  -webkit-font-smoothing:antialiased}
+
+/* TERTIARY: orbital background — decorative, pointer-events none */
+.orbit-bg{position:fixed;inset:0;z-index:0;opacity:.42;pointer-events:none}
+.orbit-bg svg{width:100%;height:100%}
+
+header{position:relative;z-index:2;padding:var(--s5) var(--s7);
+  display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px}
+.logo{color:var(--fg);font-weight:500}
+.logo span{color:var(--blue);margin-left:var(--s2);font-weight:400}
+.back{color:var(--dim);text-decoration:none;transition:color .15s}
+.back:hover{color:var(--blue)}
+
+/* HERO — primary content intro */
+.hero{position:relative;z-index:2;max-width:860px;margin:0 auto;
+  padding:var(--s9) var(--s7) var(--s7);text-align:center}
+.planet{width:9px;height:9px;border-radius:50%;background:var(--blue);
+  margin:0 auto var(--s5);box-shadow:0 0 40px 9px rgba(110,154,232,.42)}
+.kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:4.5px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:var(--s5)}
+h1{font-size:clamp(38px,6vw,66px);font-weight:500;line-height:1.14;
+  letter-spacing:-1.4px;margin-bottom:var(--s5)}
+h1 em{font-style:italic;color:var(--blue)}
+.dek{font-size:20px;line-height:1.68;color:var(--body);max-width:560px;
+  margin:0 auto;font-style:italic}
+.rule-dot{display:flex;align-items:center;justify-content:center;gap:var(--s3);
+  margin-top:var(--s6)}
+.rule-dot i{width:4px;height:4px;border-radius:50%;background:var(--dim)}
+.rule-dot span{width:52px;height:1px;background:var(--rule)}
+.tags{display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;
+  margin-top:var(--s5)}
+.tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;
+  color:var(--blue);border:1px solid rgba(110,154,232,.32);
+  border-radius:20px;padding:4px 12px;background:rgba(110,154,232,.06)}
+
+/* ARTICLE — measure 640px (§4.3) */
+article{position:relative;z-index:2;max-width:640px;margin:0 auto;
+  padding:0 var(--s7) var(--s9)}
+h2{font-size:clamp(26px,3.4vw,34px);font-weight:500;line-height:1.22;
+  letter-spacing:-.5px;margin:var(--s9) 0 var(--s5);
+  padding-top:var(--s6);border-top:1px solid var(--rule);text-wrap:balance}
+h2:first-of-type{border-top:0;padding-top:0;margin-top:var(--s6)}
+/* §4.1: 0.5em relative to heading, not a fixed small px */
+.h2num{font-family:var(--mono);font-size:.5em;color:var(--blue);
+  display:inline-block;letter-spacing:2px;margin-right:var(--s2);
+  vertical-align:.06em;white-space:nowrap;font-weight:400}
+h3{font-size:21px;font-weight:500;line-height:1.42;
+  margin:var(--s7) 0 var(--s3);font-style:italic;color:var(--fg)}
+p{font-size:18.5px;line-height:1.76;color:var(--body);margin:0 0 var(--s5)}
+strong{color:var(--fg);font-weight:600}
+a{color:var(--blue);text-decoration:none;border-bottom:1px dotted rgba(110,154,232,.45)}
+a:hover{border-bottom-style:solid}
+code{font-family:var(--mono);font-size:14.5px;color:var(--blue);
+  border-bottom:1px dotted rgba(110,154,232,.45)}
+ul,ol{margin:0 0 var(--s5);padding-left:var(--s5);color:var(--body)}
+li{margin:var(--s2) 0;font-size:18px;line-height:1.7}
+li::marker{color:var(--blue)}
+blockquote{border-left:1px solid var(--blue);padding:var(--s2) 0 var(--s2) var(--s5);
+  margin:var(--s6) 0;font-size:21px;line-height:1.62;font-style:italic;color:var(--fg)}
+hr{border:0;border-top:1px solid var(--rule);margin:var(--s7) 0}
+
+/* TOC */
+.toc{position:fixed;right:clamp(20px,3.5vw,52px);top:120px;width:186px;
+  border-left:1px solid var(--rule);padding-left:var(--s4);z-index:5}
+.toc .tt{font-family:var(--mono);font-size:9.5px;letter-spacing:2.2px;
+  color:var(--dim);margin-bottom:var(--s4);text-transform:uppercase}
+.toc a{display:block;color:var(--dim);text-decoration:none;border:0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.3px;
+  padding:7px 0;line-height:1.5;opacity:.8;transition:opacity .15s,color .15s}
+.toc a:hover{color:var(--fg);opacity:1}
+.toc a.active{color:var(--blue);opacity:1}
+@media(max-width:1180px){.toc{display:none}}
+
+footer{position:relative;z-index:2;border-top:1px solid var(--rule);
+  padding:var(--s5) var(--s7) var(--s8);text-align:center;
+  font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.8px;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
+@media(max-width:720px){
+  .hero{padding:var(--s8) var(--s4) var(--s5)}
+  article{padding:0 var(--s4) var(--s8)}
+  h1{font-size:32px;letter-spacing:-.8px}
+  p{font-size:17px}
+  header{padding:var(--s4) var(--s4)}
+}
+</style></head><body>
 
 <div class="orbit-bg">
 <svg viewBox="0 0 1100 1000" preserveAspectRatio="xMidYMid slice">
@@ -17,7 +147,7 @@
 
 <header>
   <div class="logo">TORRICELLI / LAB <span>NOTES</span></div>
-  <a class="back" href="../index.html">← 返回首页</a>
+  <a class="back" href="#">← 返回首页</a>
 </header>
 
 <div class="hero">
@@ -30,6 +160,7 @@
 </div>
 
 <article>
+
 
   
 
@@ -141,48 +272,34 @@
 </aside>
 
 
+
 </article>
 
-<footer>
-  由 TORRICELLI / LAB 整理 · 在代码与想法之间搭一座桥<br>
-  <a href="../index.html">← 返回首页</a>
-</footer>
+<aside class="toc">
+  <div class="tt">目录</div>
+  <a href="#s1">vLLM 册子是什么</a>
+  <a href="#s2">Infra 层级关系</a>
+  <a href="#s3">RL 微调名词梳理</a>
+  <a href="#s4">小结</a>
+</aside>
 
+<footer>
+  由 TORRICELLI / LAB 整理 · 在代码与想法之间搭一座桥
+</footer>
 
 <script>
 (function(){
-  var secs = document.querySelectorAll('article h2[id]');
-  var links = document.querySelectorAll('.toc a');
-  if (!secs.length || !links.length) return;
-
-  // 点击：立即高亮 + 平滑滚动
-  links.forEach(function(a){
-    a.addEventListener('click', function(e){
-      var id = a.getAttribute('href').slice(1);
-      var target = document.getElementById(id);
-      if (target) {
-        e.preventDefault();
-        var top = target.getBoundingClientRect().top + window.pageYOffset - 100;
-        window.scrollTo({top: top, behavior: 'smooth'});
-        history.replaceState(null, '', '#' + id);
-        links.forEach(function(x){ x.classList.remove('active'); });
-        a.classList.add('active');
-      }
-    });
-  });
-
-  // 滚动：高亮当前章节
-  function onScroll(){
-    var cur = '';
-    secs.forEach(function(s){
-      if (s.getBoundingClientRect().top < 160) cur = s.id;
-    });
-    links.forEach(function(a){
-      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
-    });
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  var secs=document.querySelectorAll('article h2[id]');
+  var links=document.querySelectorAll('.toc a');
+  links.forEach(function(a){a.addEventListener('click',function(e){
+    var id=a.getAttribute('href').slice(1),t=document.getElementById(id);
+    if(t){e.preventDefault();
+      window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-100,behavior:'smooth'});
+      links.forEach(function(x){x.classList.remove('active')});a.classList.add('active');}
+  })});
+  function on(){var c='';secs.forEach(function(s){if(s.getBoundingClientRect().top<160)c=s.id});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+c)})}
+  window.addEventListener('scroll',on,{passive:true});on();
 })();
 </script>
 </body></html>
