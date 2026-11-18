@@ -1,7 +1,7 @@
 /* 文章模板 · 与首页同一套 tokens（黑、三档灰、单一蓝、极淡边框） */
 :root{
   --bg:#0a0a0a; --surface:#141414; --fg:#fff;
-  --fg2:rgba(255,255,255,.72); --fg3:rgba(255,255,255,.48);
+  --fg2:rgba(255,255,255,.78); --fg3:rgba(255,255,255,.48);
   --bd:rgba(255,255,255,.09); --brand:#6799fe;
   --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
