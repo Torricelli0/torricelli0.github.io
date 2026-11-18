@@ -49,6 +49,27 @@ figure{margin:32px 0}
 figure img{width:100%;border-radius:12px;border:1px solid var(--bd)}
 figcaption{font-size:12px;color:var(--fg3);margin-top:10px;text-align:center}
 
+
+/* 阅读进度条 */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--brand);z-index:50;width:0;transition:width .1s linear}
+/* 文章开头小标签 */
+.tags-inline{display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 34px}
+.tags-inline span{font-family:var(--mono);font-size:11px;color:var(--fg3);
+  border:1px solid var(--bd);border-radius:20px;padding:3px 10px;text-decoration:none}
+/* 侧边 TOC */
+.toc{position:fixed;right:clamp(20px,4vw,60px);top:120px;width:200px;
+  border-left:1px solid var(--bd);padding-left:16px}
+.toc .tt{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--fg3);margin-bottom:14px}
+.toc a{display:block;color:var(--fg3);text-decoration:none;border:0;font-size:12px;
+  padding:6px 0;transition:color .15s;line-height:1.5}
+.toc a:hover{color:var(--fg2)}
+.toc a.active{color:var(--brand)}
+@media(max-width:1100px){.toc{display:none}}
+/* GitHub 图标 */
+.gh{display:inline-flex;align-items:center;color:var(--fg3);text-decoration:none;border:0}
+.gh:hover{color:var(--brand)}
+.gh svg{width:16px;height:16px;fill:currentColor}
+
 footer{max-width:720px;margin:0 auto;padding:30px 24px 70px;
   border-top:1px solid var(--bd);color:var(--fg3);font-size:12px;
   display:flex;justify-content:space-between}

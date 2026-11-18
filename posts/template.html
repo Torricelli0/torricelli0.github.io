@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../assets/post.css">
 </head>
 <body>
+<div id="progress"></div>
 <header>
   <div class="logo">TORRICELLI <span>/ LAB</span></div>
   <a class="back" href="../index.html">← 返回首页</a>
@@ -51,5 +52,19 @@ git add . &amp;&amp; git commit -m "new post" &amp;&amp; git push</code></pre>
   <span>TORRICELLI / LAB</span>
   <span>← 返回首页</span>
 </footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  var pr=document.getElementById('progress');
+  if(pr)pr.style.width=(isNaN(p)?0:p)+'%';
+  var secs=document.querySelectorAll('article h2[id]');
+  var links=document.querySelectorAll('.toc a');
+  var cur='';
+  secs.forEach(function(s){if(s.getBoundingClientRect().top<160)cur=s.id});
+  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
+});
+</script>
 </body>
 </html>

@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../assets/post.css">
 </head>
 <body>
+<div id="progress"></div>
 <header>
   <div class="logo">TORRICELLI <span>/ LAB</span></div>
   <a class="back" href="../index.html">← 返回首页</a>
@@ -22,7 +23,9 @@
   <h1>vLLM 册子、Infra 分层，<br>与 RL 微调名词梳理</h1>
   <p class="dek">把最近查的两组概念整理成一篇：一组是 vLLM 与推理 Infra 的关系，另一组是 LoRA / SFT / RL / PPO / GRPO 到底谁属于谁。</p>
 
-  <h2>一、vLLM 册子是什么</h2>
+  <div class="tags-inline"><span>vLLM</span><span>Infra</span><span>RL</span><span>LoRA</span></div>
+
+  <h2 id="s1">一、vLLM 册子是什么</h2>
   <p>行业里说的「vLLM 册子」分两种，日常开发多指速查手册，少数场景指官方完整 PDF 文档。</p>
 
   <h3>1. vLLM Cheatsheet（最常说的册子）</h3>
@@ -41,7 +44,7 @@
 
   <hr>
 
-  <h2>二、vLLM 和 Infra（AI 基础设施）的层级关系</h2>
+  <h2 id="s2">二、vLLM 和 Infra（AI 基础设施）的层级关系</h2>
   <h3>1. 分层架构（从上到下）</h3>
   <ol>
     <li><strong>业务应用层</strong>：ChatBot、Agent、业务后端</li>
@@ -54,7 +57,7 @@
 
   <hr>
 
-  <h2>三、为什么「Infra 容易，vLLM 内核反而难」</h2>
+  <h2 id="s3">三、为什么「Infra 容易，vLLM 内核反而难」</h2>
   <h3>Infra 简单的三个原因</h3>
   <ol>
     <li><strong>标准化工具链成熟</strong>：Docker 打包 vLLM 镜像、K8s 部署 yaml 与 HPA 自动扩缩容、GPU 调度插件都有通用模板；监控用 Prometheus + Grafana、日志用 ELK，网上脚本复制即用。</li>
@@ -80,7 +83,7 @@
 
   <hr>
 
-  <h2>四、LoRA / SFT / RL / PPO / GRPO 谁属于谁</h2>
+  <h2 id="s4">四、LoRA / SFT / RL / PPO / GRPO 谁属于谁</h2>
   <p>这几名词经常混着出现，其实分属两个体系：微调 与 强化学习。</p>
 
   <h3>LoRA：参数高效微调</h3>
@@ -115,11 +118,34 @@
   </ul>
 
   <p>完整链路：<code>基座模型 → LoRA-SFT → 训练 RM → RL（PPO / GRPO）对齐</code>。除此之外还有 DPO、KTO、IPO 等不需要复杂 PPO 循环的对齐算法。</p>
+
+<aside class="toc">
+  <div class="tt">目录</div>
+  <a href="#s1">一、vLLM 册子是什么</a>
+  <a href="#s2">二、vLLM 和 Infra 的层级</a>
+  <a href="#s3">三、RL 微调名词梳理</a>
+  <a href="#s4">四、小结</a>
+</aside>
+
 </article>
 
 <footer>
   <span>TORRICELLI / LAB</span>
   <span><a href="../index.html">← 返回首页</a></span>
+  <a class="gh" href="https://github.com/Torricelli0" aria-label="GitHub"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
 </footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progress').style.width=(isNaN(p)?0:p)+'%';
+  var secs=document.querySelectorAll('article h2[id]');
+  var links=document.querySelectorAll('.toc a');
+  var cur='';
+  secs.forEach(function(s){if(s.getBoundingClientRect().top<160)cur=s.id});
+  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
+});
+</script>
 </body>
 </html>
