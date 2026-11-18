@@ -83,10 +83,10 @@
 
   <h2 id="s3">二、下载与网络</h2>
 
-  <h3><span class="swname">Gopeed</span> <span class="swdesc">— 绕过网盘空间限制，直接下到本地</span></h3>
-  <p><strong>痛点</strong>：别人分享了一个 20GB 的网盘资源，你点「转存」提示「空间不足」。想腾空间得删东西，或者开会员扩容。</p>
-  <p><strong>怎么解决</strong>：不经过你的网盘账号。拿到分享链接后，Gopeed 直接向源服务器请求文件，下载到你电脑硬盘——网盘只是个「链接中转站」，不占你的配额。</p>
-  <p><strong>为什么是它</strong>：浏览器下载大文件容易断、不支持多线程续传；IDM 收费且对 BT/磁力支持弱。Gopeed 一个软件同时处理 HTTP、BT、磁力，跨平台，开源免费，Go 写的内存占用低。</p>
+  <h3><span class="swname">Gopeed</span> <span class="swdesc">— 多线程下载器，配合油猴脚本处理网盘资源</span></h3>
+  <p><strong>痛点</strong>：别人分享了一个 20GB 的网盘资源，你点「转存」提示「空间不足」；或者浏览器下载大文件经常断，重头再来。</p>
+  <p><strong>怎么解决</strong>：这里要澄清一个我以前写错的点——<strong>Gopeed 本身不能直接解析网盘分享链接</strong>。真实流程是两步：先用油猴脚本（如「网盘直链下载助手」「LinkSwift」）从分享页提取出直链，再把直链交给 Gopeed 下载。Gopeed 只负责「拿到一个 URL 后高速稳定地下载」，不负责「从分享页解出这个 URL」。</p>
+  <p><strong>为什么是它</strong>：浏览器下载大文件容易断、不支持多线程续传；IDM 收费且对 BT/磁力支持弱。Gopeed 一个软件同时处理 HTTP、BT、磁力，跨平台，开源免费，多线程续传稳。但<strong>网盘场景必须配合油猴脚本</strong>，单靠它做不到。</p>
 
   <h3><span class="swname">Clash Verge Rev</span> <span class="swdesc">— 代理客户端</span></h3>
   <p><strong>痛点</strong>：需要按规则分流（国内直连、国外走代理），手动改系统代理太麻烦。</p>
