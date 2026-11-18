@@ -46,11 +46,15 @@ h1 em{font-style:italic;color:var(--blue-lt)}
 
 /* ===== 正文 ===== */
 article{position:relative;z-index:2;max-width:790px;margin:0 auto;padding:0 40px 110px}
-article > h2{font-size:clamp(28px,3.8vw,40px);font-weight:500;line-height:1.18;
-  letter-spacing:-.6px;margin:60px 0 22px;padding-top:36px;border-top:1px solid var(--rule)}
+article > h2{font-size:clamp(26px,3.4vw,36px);font-weight:500;line-height:1.28;
+  letter-spacing:-.4px;margin:60px 0 22px;padding-top:36px;
+  border-top:1px solid var(--rule);text-wrap:balance}
 article > h2:first-of-type{border-top:none;padding-top:0}
-.h2num{font-family:"Space Mono",monospace;font-size:11px;color:var(--blue-lt);
-  display:block;letter-spacing:3px;margin-bottom:10px;font-weight:400}
+/* 章节编号：字号跟随标题（0.5em），用衬线体协调，颜色比标题暗一档 */
+.h2num{font-family:"Cormorant Garamond",Georgia,serif;font-size:.5em;
+  color:var(--dim);display:inline-block;letter-spacing:1px;
+  margin-right:8px;font-weight:400;vertical-align:.02em;
+  white-space:nowrap}
 h3{font-size:22px;font-weight:500;margin:34px 0 12px;font-style:italic;color:#E6E5E0}
 p{font-size:19px;line-height:1.8;color:#D8D8D2;margin:0 0 20px}
 p strong{color:var(--cream);font-weight:600}

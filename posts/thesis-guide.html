@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>本科毕业论文：从选题到答辩的踩坑记录 — TORRICELLI / LAB</title>
+<link rel="stylesheet" href="../assets/post-cosmic.css?v=5"></head><body>
+
+<div class="orbit-bg">
+<svg viewBox="0 0 1100 1000" preserveAspectRatio="xMidYMid slice">
+  <ellipse cx="550" cy="420" rx="660" ry="250" fill="none" stroke="#3A63B8" stroke-width="0.7" opacity="0.4" transform="rotate(-16 550 420)"/>
+  <ellipse cx="550" cy="480" rx="800" ry="340" fill="none" stroke="#3A63B8" stroke-width="0.5" opacity="0.28" transform="rotate(11 550 480)"/>
+  <ellipse cx="550" cy="500" rx="520" ry="190" fill="none" stroke="#6E9AE8" stroke-width="0.5" opacity="0.32" transform="rotate(-34 550 500)"/>
+  <circle cx="190" cy="330" r="3" fill="#6E9AE8" opacity="0.65"/>
+  <circle cx="900" cy="640" r="2.5" fill="#6E9AE8" opacity="0.5"/>
+  <circle cx="700" cy="150" r="2" fill="#F7F6F3" opacity="0.35"/>
+  <circle cx="300" cy="820" r="2" fill="#F7F6F3" opacity="0.3"/>
+</svg>
+</div>
+
+<header>
+  <div class="logo">TORRICELLI / LAB <span>NOTES</span></div>
+  <a class="back" href="../index.html">← 返回首页</a>
+</header>
+
+<div class="hero">
+  <div class="planet"></div>
+  <div class="kicker">No. 003 · Experience</div>
+  <h1>本科毕业论文<br>从选题到答辩的<em>踩坑记录</em></h1>
+  <p class="dek">网上教你写论文的文章，大多在讲格式和流程。这篇想讲那些「流程之外」的东西——怎么判断一个题目能不能做、导师最在意什么、查重到底查什么。</p>
+  <div class="rule-dot"><span></span><i></i><i></i><i></i><span></span></div>
+  <div class="tags"><span>论文</span><span>本科</span><span>踩坑</span><span>经验</span></div>
+</div>
+
+<article>
+
+<h2 id="s1"><span class="h2num">一、</span>选题：什么题目能做完</h2>
+
+<p>大部分人选题目时想的都是「什么题目看起来厉害」，但真正决定生死的是——<strong>你能不能在不熟悉的技术栈里，按时做出可演示的成果</strong>。</p>
+
+<h3>三个可行的判断标准</h3>
+
+<ul>
+  <li><strong>能不能拆成独立模块</strong>：如果一个题目必须整个跑通才有结果，风险极高。能被切成 3-5 个模块、每块单独可验证的，才安全。</li>
+  <li><strong>有没有现成的数据/素材</strong>：需要自己采集数据（尤其是标注数据）的项目，时间成本通常估低 3 倍。</li>
+  <li><strong>技术栈是否已有积累</strong>：从零学一个新框架做毕设，是最常见的翻车原因。</li>
+</ul>
+
+<p>一个反面经验：RAG 类题目看起来很「新」，但如果只是调 API + 拼提示词，答辩时会被追问「你的创新点在哪」。<strong>要么有评测方案，要么有工程优化，否则容易变成课程作业的放大版。</strong></p>
+
+<h2 id="s2"><span class="h2num">二、</span>导师最在意的三件事</h2>
+
+<p>和导师的每次沟通，本质上是在回答三个隐含问题：</p>
+
+<h3>1. 这个题目成立吗</h3>
+<p>不是「有意思吗」，是「<strong>有没有明确的现有问题，你的方法有没有针对性</strong>」。开题报告里如果只有「基于 XX 的 YY 系统」，导师会追问「现有系统哪里不够」。</p>
+
+<h3>2. 能按时做完吗</h3>
+<p>导师最怕的是「进度到一半发现做不完」。所以中期检查比开题更重要——<strong>中期时能演示一个粗糙但完整的东西，远比完美但只剩一半强</strong>。</p>
+
+<h3>3. 数据/结果可信吗</h3>
+<p>论文里的每个数字，导师都可能问「怎么来的」。没有实验记录、没有对照组的数字，答辩时很难圆。</p>
+
+<h2 id="s3"><span class="h2num">三、</span>查重：到底在查什么</h2>
+
+<h3>查重系统的实际原理</h3>
+<p>不是查「有没有抄」，而是<strong>查连续字符串的重复率</strong>。所以：</p>
+<ul>
+  <li><strong>改同义词没用</strong>——连续片段超过阈值就判重</li>
+  <li><strong>调换语序用处有限</strong>——分词后的相似度仍然会命中</li>
+  <li><strong>真正有效的是重组逻辑</strong>——用自己的话重述、改变论证顺序</li>
+</ul>
+
+<h3>关于 AI 写作</h3>
+<p>现在的查重系统一般<span>不直接检测 AI 生成</span>，但有两个风险：</p>
+<ul>
+  <li><strong>AI 写的段落往往有固定句式</strong>，多篇论文之间可能互相撞</li>
+  <li><strong>答辩时答不上来</strong>才是真问题——论文是你写的，你就要能解释每一句</li>
+</ul>
+
+<p>务实的做法：<strong>用 AI 帮你查资料、理逻辑、改语言，但核心论证和技术细节必须自己吃透。</strong></p>
+
+<h2 id="s4"><span class="h2num">四、</span>六个月的实际节奏</h2>
+
+<p>很多人以为时间是均匀的，实际上真实分布是这样的：</p>
+
+<ul>
+  <li><strong>第 1-4 周：读文献 + 定方案</strong>。这段时间产出很少，但决定了后面所有事情。别急着写代码。</li>
+  <li><strong>第 5-14 周：开发主体</strong>。这是唯一能安心写代码的阶段。此时应该每周都有可演示的进度。</li>
+  <li><strong>第 15-18 周：实验与调优</strong>。补对照组、跑指标、记录数据。容易低估的一环。</li>
+  <li><strong>第 19-22 周：写论文</strong>。真正的写作时间比想象中少，因为前面在写代码时没有同步记录。</li>
+  <li><strong>第 23-24 周：查重、修改、答辩准备</strong>。查重不过要留出至少一周返工。</li>
+</ul>
+
+<p>最常见的失误：<strong>把写作留到最后四周</strong>。但论文不是「把做过的事写下来」，而是「重新组织一遍论证」——这件事没法压缩。</p>
+
+<h2 id="s5"><span class="h2num">五、</span>答辩：他们真正想听什么</h2>
+
+<p>答辩提问大致分四类，按出现频率排序：</p>
+
+<ul>
+  <li><strong>「这个方法的局限在哪」</strong>——诚实说局限比硬说自己完美得分高</li>
+  <li><strong>「为什么选这个方案，不用那个」</strong>——要有对比，哪怕是简单的对比</li>
+  <li><strong>「这个数字怎么来的」</strong>——能说出实验设置、数据集、评价指标</li>
+  <li><strong>「如果继续做，下一步是什么」</strong>——说明你真的想过，而不是做完就扔</li>
+</ul>
+
+<p>反过来，最不该出现的是：<strong>「这个我没考虑过」「这是参考别人的」</strong>。答不上来可以说「这部分我做得不够，后续会考虑 XX」，但不要说「不知道」。</p>
+
+<h2 id="s6"><span class="h2num">六、</span>几条直白的建议</h2>
+
+<blockquote>论文的价值不在「做了多难的东西」，而在「你能不能把做过的事讲清楚」。</blockquote>
+
+<ul>
+  <li><strong>边做边记</strong>：每次实验都记下时间、参数、结果。写论文时你会感谢自己。</li>
+  <li><strong>早写目录</strong>：第 10 周就把论文目录列出来，后面按目录填内容，比最后从头写容易得多。</li>
+  <li><strong>找一个人讲一遍</strong>：如果非本专业的人听不懂你的方法，说明你还没讲清楚。</li>
+  <li><strong>别追求完美</strong>：答辩通过的标准不是「优秀」，是「合格」。把时间花在能完成上。</li>
+</ul>
+
+<hr>
+
+<p style="color:var(--dim);font-size:15px">本文基于我的毕设经历整理。基础流程和格式规范网上有很多更好的版本，这里只写流程之外的部分。</p>
+
+</article>
+
+<aside class="toc">
+  <div class="tt">目录</div>
+  <a href="#s1">一、选题</a>
+  <a href="#s2">二、导师在意的</a>
+  <a href="#s3">三、查重原理</a>
+  <a href="#s4">四、六个月节奏</a>
+  <a href="#s5">五、答辩</a>
+  <a href="#s6">六、直白建议</a>
+</aside>
+
+<footer>
+  由 TORRICELLI / LAB 整理 · 在代码与想法之间搭一座桥<br>
+  <a href="../index.html" style="color:var(--blue-lt);text-decoration:none">← 返回首页</a>
+</footer>
+
+<script>
+(function(){
+  var secs = document.querySelectorAll('article h2[id]');
+  var links = document.querySelectorAll('.toc a');
+  if (!secs.length || !links.length) return;
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 100;
+        window.scrollTo({top: top, behavior: 'smooth'});
+        history.replaceState(null, '', '#' + id);
+        links.forEach(function(x){ x.classList.remove('active'); });
+        a.classList.add('active');
+      }
+    });
+  });
+  function onScroll(){
+    var cur = '';
+    secs.forEach(function(s){ if (s.getBoundingClientRect().top < 160) cur = s.id; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body></html>
