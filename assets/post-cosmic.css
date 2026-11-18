@@ -1,0 +1,89 @@
+/* Cosmic 风格 · 科普/长文专用
+   与 post.css（Terminal 风格）并列，互不影响 */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --black:#0A0A0A; --cream:#F0EAD8;
+  --blue:#2B4F91; --blue-lt:#5B7FC7;
+  --dim:#8A8272; --rule:rgba(240,234,216,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--cream);
+  font-family:"Cormorant Garamond",Georgia,"Songti SC",serif;
+  font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ===== 天体轨道背景 ===== */
+.orbit-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55}
+.orbit-bg svg{width:100%;height:100%}
+
+/* ===== 顶栏 ===== */
+header{position:relative;z-index:2;padding:22px 40px;display:flex;
+  justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);
+  font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:1.8px}
+.logo{color:var(--cream);font-weight:700}
+.logo span{color:var(--blue-lt);margin-left:10px;font-weight:400}
+.back{margin-left:auto;color:var(--dim);text-decoration:none;
+  font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:1px}
+.back:hover{color:var(--blue-lt)}
+
+/* ===== Hero ===== */
+.hero{position:relative;z-index:2;max-width:900px;margin:0 auto;
+  padding:80px 40px 50px;text-align:center}
+.planet{width:10px;height:10px;border-radius:50%;background:var(--blue-lt);
+  margin:0 auto 30px;box-shadow:0 0 44px 10px rgba(91,127,199,.45)}
+.kicker{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:4.5px;
+  color:var(--blue-lt);text-transform:uppercase;margin-bottom:26px}
+h1{font-size:clamp(40px,6.4vw,74px);font-weight:500;line-height:1.08;
+  letter-spacing:-1.6px;margin-bottom:24px}
+h1 em{font-style:italic;color:var(--blue-lt)}
+.dek{font-size:20px;line-height:1.7;color:#bdb6a6;max-width:580px;margin:0 auto;font-style:italic}
+.rule-dot{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:34px}
+.rule-dot i{width:4px;height:4px;border-radius:50%;background:var(--dim)}
+.rule-dot span{width:56px;height:1px;background:var(--rule)}
+.tags{margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tags span{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:1.5px;
+  color:var(--dim);border:1px solid var(--rule);border-radius:20px;padding:4px 12px}
+
+/* ===== 正文 ===== */
+article{position:relative;z-index:2;max-width:790px;margin:0 auto;padding:0 40px 110px}
+article > h2{font-size:clamp(28px,3.8vw,40px);font-weight:500;line-height:1.18;
+  letter-spacing:-.6px;margin:60px 0 22px;padding-top:36px;border-top:1px solid var(--rule)}
+article > h2:first-of-type{border-top:none;padding-top:0}
+.h2num{font-family:"Space Mono",monospace;font-size:11px;color:var(--blue-lt);
+  display:block;letter-spacing:3px;margin-bottom:10px;font-weight:400}
+h3{font-size:22px;font-weight:500;margin:34px 0 12px;font-style:italic;color:#d8d1c1}
+p{font-size:19px;line-height:1.8;color:#c4bdb0;margin:0 0 20px}
+p strong{color:var(--cream);font-weight:600}
+p code{font-family:"Space Mono",monospace;font-size:15px;color:var(--blue-lt);
+  border-bottom:1px dotted rgba(91,127,199,.5)}
+a{color:var(--blue-lt);text-decoration:none;border-bottom:1px dotted rgba(91,127,199,.5)}
+a:hover{border-bottom-style:solid}
+ul,ol{margin:0 0 22px;padding-left:26px;color:#c4bdb0}
+li{margin:9px 0;font-size:18.5px;line-height:1.7}
+blockquote{border-left:1px solid var(--blue-lt);padding:4px 0 4px 26px;
+  margin:28px 0;font-size:22px;line-height:1.65;font-style:italic;color:var(--cream)}
+hr{border:0;border-top:1px solid var(--rule);margin:44px 0}
+figure{margin:28px 0}
+figure img{width:100%;border:1px solid var(--rule);border-radius:2px;display:block}
+figcaption{font-family:"Space Mono",monospace;font-size:10.5px;color:var(--dim);
+  margin-top:12px;letter-spacing:.6px}
+.tags-inline{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px;justify-content:center}
+.tags-inline span{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:1.5px;
+  color:var(--dim);border:1px solid var(--rule);border-radius:20px;padding:4px 12px}
+
+/* ===== 页脚 ===== */
+footer{position:relative;z-index:2;border-top:1px solid var(--rule);
+  padding:26px 40px 56px;text-align:center;
+  font-family:"Space Mono",monospace;font-size:10.5px;
+  color:var(--dim);letter-spacing:.8px;
+  display:flex;flex-direction:column;align-items:center;gap:14px}
+
+/* ===== 移动端 ===== */
+@media(max-width:700px){
+  .hero{padding:52px 22px 34px}
+  article{padding:0 22px 70px}
+  h1{font-size:34px;letter-spacing:-.8px}
+  p{font-size:17px}
+  article > h2{font-size:26px}
+  header{padding:16px 22px;font-size:9px}
+}

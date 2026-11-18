@@ -1,31 +1,44 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>vLLM 册子、Infra 分层，与 RL 微调名词梳理 — TORRICELLI / LAB</title>
-<link rel="stylesheet" href="../assets/post.css">
-</head>
-<body>
-<div id="progress"></div>
+<link rel="stylesheet" href="../assets/post-cosmic.css"></head><body>
+
+<div class="orbit-bg">
+<svg viewBox="0 0 1100 1000" preserveAspectRatio="xMidYMid slice">
+  <ellipse cx="550" cy="420" rx="660" ry="250" fill="none" stroke="#2B4F91" stroke-width="0.7" opacity="0.4" transform="rotate(-16 550 420)"/>
+  <ellipse cx="550" cy="480" rx="800" ry="340" fill="none" stroke="#2B4F91" stroke-width="0.5" opacity="0.28" transform="rotate(11 550 480)"/>
+  <ellipse cx="550" cy="500" rx="520" ry="190" fill="none" stroke="#5B7FC7" stroke-width="0.5" opacity="0.32" transform="rotate(-34 550 500)"/>
+  <circle cx="190" cy="330" r="3" fill="#5B7FC7" opacity="0.65"/>
+  <circle cx="900" cy="640" r="2.5" fill="#5B7FC7" opacity="0.5"/>
+  <circle cx="700" cy="150" r="2" fill="#F0EAD8" opacity="0.35"/>
+  <circle cx="300" cy="820" r="2" fill="#F0EAD8" opacity="0.3"/>
+</svg>
+</div>
+
 <header>
-  <div class="logo">TORRICELLI <span>/ LAB</span></div>
+  <div class="logo">TORRICELLI / LAB <span>NOTES</span></div>
   <a class="back" href="../index.html">← 返回首页</a>
 </header>
 
-<article>
-  <div class="meta">
-    <span class="k">笔记</span>
-    <span>2026-11-17</span>
-    <span>约 8 分钟</span>
-  </div>
-
-  <h1>vLLM 册子、Infra 分层，<br>与 RL 微调名词梳理</h1>
+<div class="hero">
+  <div class="planet"></div>
+  <div class="kicker">No. 002 · Technical Notes</div>
+  <h1>vLLM 册子、Infra 分层<br>与 <em>RL 微调</em>名词梳理</h1>
   <p class="dek">把最近查的两组概念整理成一篇：一组是 vLLM 与推理 Infra 的关系，另一组是 LoRA / SFT / RL / PPO / GRPO 到底谁属于谁。</p>
+  <div class="rule-dot"><span></span><i></i><i></i><i></i><span></span></div>
+  <div class="tags"><span>vLLM</span><span>INFRA</span><span>RL</span><span>LORA</span></div>
+</div>
 
-  <div class="tags-inline"><span>vLLM</span><span>Infra</span><span>RL</span><span>LoRA</span></div>
+<article>
 
-  <h2 id="s1">一、vLLM 册子是什么</h2>
+  
+
+  
+  
+
+  
+
+  <h2 id="s1"><span class="h2num">一、v</span>LLM 册子是什么</h2>
   <p>行业里说的「vLLM 册子」分两种，日常开发多指速查手册，少数场景指官方完整 PDF 文档。</p>
 
   <h3>1. vLLM Cheatsheet（最常说的册子）</h3>
@@ -44,7 +57,7 @@
 
   <hr>
 
-  <h2 id="s2">二、vLLM 和 Infra（AI 基础设施）的层级关系</h2>
+  <h2 id="s2"><span class="h2num">二、v</span>LLM 和 Infra（AI 基础设施）的层级关系</h2>
   <h3>1. 分层架构（从上到下）</h3>
   <ol>
     <li><strong>业务应用层</strong>：ChatBot、Agent、业务后端</li>
@@ -57,7 +70,7 @@
 
   <hr>
 
-  <h2 id="s3">三、为什么「Infra 容易，vLLM 内核反而难」</h2>
+  <h2 id="s3"><span class="h2num">三、为</span>什么「Infra 容易，vLLM 内核反而难」</h2>
   <h3>Infra 简单的三个原因</h3>
   <ol>
     <li><strong>标准化工具链成熟</strong>：Docker 打包 vLLM 镜像、K8s 部署 yaml 与 HPA 自动扩缩容、GPU 调度插件都有通用模板；监控用 Prometheus + Grafana、日志用 ELK，网上脚本复制即用。</li>
@@ -83,7 +96,7 @@
 
   <hr>
 
-  <h2 id="s4">四、LoRA / SFT / RL / PPO / GRPO 谁属于谁</h2>
+  <h2 id="s4"><span class="h2num">四、L</span>oRA / SFT / RL / PPO / GRPO 谁属于谁</h2>
   <p>这几名词经常混着出现，其实分属两个体系：微调 与 强化学习。</p>
 
   <h3>LoRA：参数高效微调</h3>
@@ -127,25 +140,12 @@
   <a href="#s4">四、小结</a>
 </aside>
 
+
 </article>
 
 <footer>
-  <span>TORRICELLI / LAB</span>
-  <span><a href="../index.html">← 返回首页</a></span>
-  <a class="gh" href="https://github.com/Torricelli0" aria-label="GitHub"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  由 TORRICELLI / LAB 整理 · 在代码与想法之间搭一座桥<br>
+  <a href="../index.html">← 返回首页</a>
 </footer>
 
-<script>
-window.addEventListener('scroll',function(){
-  var h=document.documentElement;
-  var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
-  document.getElementById('progress').style.width=(isNaN(p)?0:p)+'%';
-  var secs=document.querySelectorAll('article h2[id]');
-  var links=document.querySelectorAll('.toc a');
-  var cur='';
-  secs.forEach(function(s){if(s.getBoundingClientRect().top<160)cur=s.id});
-  links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
-});
-</script>
-</body>
-</html>
+</body></html>
