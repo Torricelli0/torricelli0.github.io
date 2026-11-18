@@ -17,123 +17,137 @@
   <div class="meta">
     <span class="k">NOTE</span>
     <span>2026-11-18</span>
-    <span>约 12 分钟</span>
+    <span>约 14 分钟</span>
   </div>
 
   <h1>我的软件与收藏清单<br>从开发环境到摸鱼工具</h1>
-  <p class="dek">把我 <a href="https://github.com/Torricelli0/dotfiles">dotfiles</a> 里的 78 个软件和浏览器里 69 个收藏翻出来，挑那些真正在用的。每个只说清楚一件事：它解决什么问题。</p>
+  <p class="dek">把我电脑上 78 个软件和浏览器里 97 个收藏翻出来，只留那些真正解决问题的。每款都回答三件事——它会遇到什么麻烦、怎么解决、为什么不用别的。</p>
 
   <div class="tags-inline"><span>工具</span><span>效率</span><span>macOS</span><span>收藏</span></div>
 
   <h2 id="s1">写在前面</h2>
 
-  <p>这份清单不是「十大必装软件」那种。它是我自己电脑上真实在跑的，附上为什么留着它。有些你可能用不上，但至少能知道有这么个东西存在。</p>
+  <p>市面上的「软件推荐」大多有个毛病：把官网的功能列表抄一遍，读完你知道了它「支持什么」，但不知道自己「需不需要」。</p>
 
-  <p>原则有三条：<strong>只装解决具体问题的</strong>、<strong>能免费的不用付费的</strong>、<strong>装完三个月没打开就删</strong>。</p>
+  <p>所以这篇换个写法。每款软件我只回答三个问题：</p>
 
-  <h2 id="s2">桌面软件：开发与效率</h2>
-
-  <h3>1. iTerm2 — 终端</h3>
-  <p>macOS 自带 Terminal 够用，但 iTerm2 的分屏、搜索、热键唤出窗口是回不去的东西。配置全在 <code>~/.config/iterm2</code>，跟着 dotfiles 走。</p>
-
-  <h3>2. Cursor — 编辑器</h3>
-  <p>VS Code 的分支，把 AI 补全和 Chat 做进了编辑器骨架里。我主要用它写代码和改配置。插件和设置走 Settings Sync，换机器登录账户就回来了。</p>
-
-  <h3>3. Sublime Text — 备用编辑器</h3>
-  <p>打开几十兆的日志、CSV、JSON 时比任何 Electron 编辑器都快。不用它写项目，只用来「看一眼大文件」。</p>
-
-  <h3>4. GitHub Desktop — 图形化 Git</h3>
-  <p>命令行当然更快，但可视化看 diff、挑文件提交、处理冲突时省脑子。我两个都用：日常 commit 用命令行，复杂操作开它。</p>
-
-  <h3>5. Docker Desktop — 容器</h3>
-  <p>跑数据库、跑别人的项目、复现环境问题。有了它就不用在本机装一堆 MySQL、Redis。</p>
-
-  <h3>6. Raycast（可选替代 Spotlight）</h3>
-  <p>比 Spotlight 强的地方是它能装扩展：剪贴板历史、窗口管理、快速计算、直接搜 GitHub。免费版已经够用。</p>
-
-  <h3>7. Hidden Bar — 菜单栏折叠</h3>
-  <p>Mac 顶部图标越装越多，它会插一条分隔线，把右边的图标折叠起来。点一下展开，再点隐藏。视觉上干净很多。</p>
-
-  <h2 id="s3">下载与网络</h2>
-
-  <h3>8. Gopeed — 下载器</h3>
-  <p>支持 HTTP、BitTorrent、磁力链接。我主要用它下载一些公开的镜像文件和大体积素材。Go 写的，跨平台，内存占用比同类低。</p>
-
-  <h3>9. Clash Verge Rev — 代理客户端</h3>
-  <p>开源的 Clash 图形界面，配置从订阅导入。这里只提软件本身——具体配置和订阅各家不同，自己解决。</p>
-
-  <h2 id="s4">笔记与知识管理</h2>
-
-  <h3>10. Obsidian — 本地笔记库</h3>
-  <p>所有笔记存成本地 markdown 文件，不上传任何人服务器。双链、图谱、插件生态是它的强项。我目前有 382 篇笔记在里面。</p>
-
-  <h3>11. Typora — 即时渲染 Markdown</h3>
-  <p>写长文时用。没有预览窗，边写边渲染，所见即所得。比 Obsidian 更专注写作本身。</p>
-
-  <p>这两个搭配用：<strong>Obsidian 管知识体系，Typora 管单篇写作。</strong></p>
-
-  <h2 id="s5">浏览器扩展（从 12 个里挑 6 个）</h2>
-
-  <h3>12. uBlock Origin Lite — 广告拦截</h3>
-  <p>Manifest V3 版本，比原版轻。拦广告和追踪器，网页加载更快。</p>
-
-  <h3>13. 沉浸式翻译 — 双语对照</h3>
-  <p>看英文文档时，它把译文插在原文下方，不替换原文。技术文档、论文、GitHub README 都靠它。</p>
-
-  <h3>14. Bitwarden — 密码管理</h3>
-  <p>开源自托管选项，免费版够用。所有密码、API key、订阅链接都存这里。</p>
-
-  <h3>15. 篡改猴（Tampermonkey）— 用户脚本</h3>
-  <p>给网页打补丁的容器。我装了 GitHub 汉化、B 站下载、网盘直链这几个脚本。</p>
-
-  <h3>16. 牛客网申助手 — 校招填表</h3>
-  <p>自动填写招聘网站的表单。校招季省时间用的，非求职期可以关掉。</p>
-
-  <h3>17. ChatGPT / Claude — AI 侧边栏</h3>
-  <p>不用切标签页就能问 AI。两个都装是因为不同任务用不同模型。</p>
-
-  <h2 id="s6">收藏的网站</h2>
-
-  <h3>技术类</h3>
   <ul>
-    <li><strong>小林 coding</strong> — 图解计算机网络、操作系统、MySQL，复习八股的图文资料</li>
-    <li><strong>CodeTop</strong> — 按公司分类的高频面试题，刷题前先看这里排优先级</li>
-    <li><strong>卡码笔记</strong> — 程序员八股文整理，配合卡码网的题目用</li>
-    <li><strong>菜鸟教程</strong> — 语法速查，不用翻官方文档那么长</li>
-    <li><strong>自学 SQL 网</strong> — 交互式练 SQL，边写边看结果</li>
-    <li><strong>洛谷 / LeetCode</strong> — 刷题平台，按难度和标签筛题</li>
+    <li><strong>什么情况下你会需要它</strong>（痛点）</li>
+    <li><strong>它怎么解决的</strong>（机制，一句）</li>
+    <li><strong>为什么不用同类</strong>（差异点）</li>
   </ul>
 
-  <h3>工具类</h3>
+  <p>能说清楚这三条的留下，说不清的删了——这也是我电脑上现在只剩这些的原因。</p>
+
+  <h2 id="s2">一、桌面软件</h2>
+
+  <h3><span class="swname">Obsidian</span> <span class="swdesc">— 让笔记变成能被 AI 直接读的知识库</span></h3>
+  <p><strong>痛点</strong>：笔记散在印象笔记、飞书文档、微信收藏里。想找三个月前记的一个概念，靠关键词翻半天；想让 AI 帮你整理，还得一篇篇复制粘贴。</p>
+  <p><strong>怎么解决</strong>：所有笔记就是本地文件夹里的 <code>.md</code> 文件。AI 能直接读这个文件夹——你说「把我关于 RAG 的笔记归纳成一篇」，它扫目录就能做。双链和图谱让「RAG」「向量检索」「embedding」这些概念自动连成网，点一个跳出一串相关的。</p>
+  <p><strong>为什么是它</strong>：Notion 的笔记在云端，AI 要读得走 API 还有额度；印象笔记导出格式混乱。Obsidian 的本地文件夹是<strong>任何 AI 工具都能直接访问</strong>的格式——这是它在 AI 时代重新变热的原因。我现在有 382 篇笔记在里面。</p>
+
+  <h3><span class="swname">Typora</span> <span class="swdesc">— 写长文时不被预览窗分心</span></h3>
+  <p><strong>痛点</strong>：用普通编辑器写 Markdown，左边源码右边预览，一半屏幕浪费了，而且眼睛要在两边来回跳。</p>
+  <p><strong>怎么解决</strong>：边写边渲染，所见即所得。你敲 <code>## 标题</code>，它立刻变成标题样式，但光标还在文本流里。</p>
+  <p><strong>为什么是它</strong>：Obsidian 也能写，但它更偏「知识体系」——文件多了以后界面复杂。Typora 只做一件事：专注写这一篇。<strong>我拿 Obsidian 管知识库，拿 Typora 写要发出去的文章。</strong></p>
+
+  <h3><span class="swname">iTerm2</span> <span class="swdesc">— 让终端变成能干活的地方</span></h3>
+  <p><strong>痛点</strong>：macOS 自带 Terminal 只有一个窗口。想同时看日志、跑测试、改配置，得开三个窗口再手动摆位置；输出太长往上滚就找不到了。</p>
+  <p><strong>怎么解决</strong>：分屏（一屏切四块）、<code>Cmd+F</code> 搜历史输出、热键唤出半透明窗口（写代码时随时瞄日志）。配置存成文件，换电脑复制过去就是原样。</p>
+  <p><strong>为什么是它</strong>：系统 Terminal 不支持分屏和搜索；Warp 更现代但要登录账号。iTerm2 免费、无账号、配置可迁移。</p>
+
+  <h3><span class="swname">Cursor</span> <span class="swdesc">— 把 AI 装进编辑器骨架里</span></h3>
+  <p><strong>痛点</strong>：用 ChatGPT 写代码要来回复制——describe 需求、复制代码、贴回编辑器、报错再复制出去。</p>
+  <p><strong>怎么解决</strong>：AI 能看到你当前文件、整个项目目录、报错信息。选中一段代码按 <code>Cmd+K</code> 说「改成分页查询」，它直接改在原位，不用复制。</p>
+  <p><strong>为什么是它</strong>：VS Code 装 Copilot 插件也能补全，但「理解整个项目上下文再改」这件事不如 Cursor 原生做得顺。缺点是它基于 VS Code 分支，插件生态偶尔跟不上。</p>
+
+  <h3><span class="swname">Sublime Text</span> <span class="swdesc">— 打开大文件不卡</span></h3>
+  <p><strong>痛点</strong>：几百兆的日志、CSV、JSON，用 VS Code 或 Cursor 打开会卡死，风扇狂转。</p>
+  <p><strong>怎么解决</strong>：原生代码写的，内存映射加载，几十兆文件秒开。</p>
+  <p><strong>为什么是它</strong>：不用它写项目，也不装插件，纯粹当「看一眼大文件」的工具。这个场景替代品很少。</p>
+
+  <h3><span class="swname">GitHub Desktop</span> <span class="swdesc">— 复杂 Git 操作时少动脑</span></h3>
+  <p><strong>痛点</strong>：命令行提交当然快，但看到 diff 要改哪几行、只想提交一部分文件、或者处理合并冲突时，纯文本界面容易出错。</p>
+  <p><strong>怎么解决</strong>：图形化显示每个文件的改动行，能勾选只提交某个文件、甚至某个 hunk。</p>
+  <p><strong>为什么是它</strong>：我两个都用——日常 commit 用命令行快，复杂操作开它。<strong>它不是命令行替代品，是互补。</strong></p>
+
+  <h3><span class="swname">Docker Desktop</span> <span class="swdesc">— 不在本机装一堆数据库</span></h3>
+  <p><strong>痛点</strong>：想跑一下别人的项目，README 说要 MySQL 5.7 + Redis 6 + Python 3.9。在你已经装了 MySQL 8 和 Python 3.12 的机器上，这是灾难。</p>
+  <p><strong>怎么解决</strong>：每个项目一个容器，依赖全打包在里面。跑起来 <code>docker compose up</code>，用完 <code>down</code>，本机环境干净如初。</p>
+  <p><strong>为什么是它</strong>：Colima 更轻但 GUI 缺失、排查问题要命令行；OrbStack 更快但要付费。Docker Desktop 免费版够用，图形界面看容器状态直观。</p>
+
+  <h3><span class="swname">Raycast</span> <span class="swdesc">— Spotlight 的加强版</span></h3>
+  <p><strong>痛点</strong>：系统 Spotlight 只能搜文件和应用。想查剪贴板历史、算个数、看时区、直接开 GitHub 仓库，都得切到浏览器或别的 App。</p>
+  <p><strong>怎么解决</strong>：一个快捷键唤出，能装扩展。我常用的是：剪贴板历史（找回十分钟前复制的东西）、窗口管理（快捷键切左右分屏）、快速计算。</p>
+  <p><strong>为什么是它</strong>：Alfred 是老牌但免费版功能受限；系统 Spotlight 不能装扩展。Raycast 免费版已经覆盖 90% 的日常需求。</p>
+
+  <h2 id="s3">二、下载与网络</h2>
+
+  <h3><span class="swname">Gopeed</span> <span class="swdesc">— 绕过网盘空间限制，直接下到本地</span></h3>
+  <p><strong>痛点</strong>：别人分享了一个 20GB 的网盘资源，你点「转存」提示「空间不足」。想腾空间得删东西，或者开会员扩容。</p>
+  <p><strong>怎么解决</strong>：不经过你的网盘账号。拿到分享链接后，Gopeed 直接向源服务器请求文件，下载到你电脑硬盘——网盘只是个「链接中转站」，不占你的配额。</p>
+  <p><strong>为什么是它</strong>：浏览器下载大文件容易断、不支持多线程续传；IDM 收费且对 BT/磁力支持弱。Gopeed 一个软件同时处理 HTTP、BT、磁力，跨平台，开源免费，Go 写的内存占用低。</p>
+
+  <h3><span class="swname">Clash Verge Rev</span> <span class="swdesc">— 代理客户端</span></h3>
+  <p><strong>痛点</strong>：需要按规则分流（国内直连、国外走代理），手动改系统代理太麻烦。</p>
+  <p><strong>怎么解决</strong>：读配置文件里的规则，自动判断每个域名走哪条线。</p>
+  <p><strong>为什么是它</strong>：Clash for Windows 已停更；这个是基于 Tauri 重写的续作，Mac/Win/Linux 通用，界面更现代。具体配置各家方案不同，自己解决。</p>
+
+  <h2 id="s4">三、浏览器扩展</h2>
+
+  <h3><span class="swname">沉浸式翻译</span> <span class="swdesc">— 看英文文档不切标签页</span></h3>
+  <p><strong>痛点</strong>：读英文技术文档时，遇到不认识的段落要复制到翻译网站，翻完再回来，节奏全断。</p>
+  <p><strong>怎么解决</strong>：把译文<strong>插在原文下方</strong>，不替换原文。你能对照着看，术语不会因为翻译变形而看不懂。支持 PDF、字幕、电子书。</p>
+  <p><strong>为什么是它</strong>：浏览器自带翻译会整页替换，术语翻译经常错得离谱。Chrome 自带翻译还不支持 PDF 和字幕。</p>
+
+  <h3><span class="swname">uBlock Origin Lite</span> <span class="swdesc">— 页面加载快一点</span></h3>
+  <p><strong>痛点</strong>：很多网站广告和追踪脚本比正文还大，页面卡、流量白耗。</p>
+  <p><strong>怎么解决</strong>：在页面加载前拦截请求，不下载那些脚本。</p>
+  <p><strong>为什么是它</strong>：Manifest V3 版本，比原版轻，对页面性能影响小。同类 AdBlock Plus 默认放行「可接受广告」，这个规则更严格。</p>
+
+  <h3><span class="swname">Bitwarden</span> <span class="swdesc">— 密码不该记在脑子里</span></h3>
+  <p><strong>痛点</strong>：几十个网站用不同密码记不住，用同一个又不安全。</p>
+  <p><strong>怎么解决</strong>：浏览器扩展自动填充，主密码只记一个。开源自托管，数据可以自己存。</p>
+  <p><strong>为什么是它</strong>：1Password 体验更好但收费；Chrome 自带密码管理绑定浏览器，换浏览器就没了。Bitwarden 免费版功能完整，跨浏览器跨设备。</p>
+
+  <h3>篡改猴（Tampermonkey）— 给网页打补丁</h3>
+  <p><strong>痛点</strong>：某些网站功能不全或不好用（GitHub 全英文界面、B 站不能批量下载），但你没法改它的代码。</p>
+  <p><strong>怎么解决</strong>：装用户脚本，让脚本在页面加载后修改 DOM。我装了 GitHub 汉化、B 站下载、网盘直链几个。</p>
+  <p><strong>为什么是它</strong>：Violentmonkey 是同类替代，功能差不多。选它只是因为用户基数大，脚本兼容性好。</p>
+
+  <h2 id="s5">四、收藏的网站</h2>
+
+  <p>浏览器里 97 个书签，大部分是求职和课程相关的临时链接。真正反复打开的是这几个：</p>
+
+  <h3>查概念 / 八股</h3>
   <ul>
-    <li><strong>iLovePDF</strong> — 合并、压缩、转格式，PDF 相关的杂活基本都能干</li>
-    <li><strong>remove.bg</strong> — 一键抠背景，做演示图时用</li>
-    <li><strong>Desmos</strong> — 在线图形计算器，画函数图像比手算直观</li>
-    <li><strong>SuperText</strong> — 批量文本处理，去重、排序、格式转换</li>
-    <li><strong>wallhaven</strong> — 高质量壁纸站，按标签筛</li>
-    <li><strong>Kaggle</strong> — 数据集和 notebook，学机器学习时找练手数据</li>
+    <li><strong>小林 coding</strong> — 图解计算机网络、操作系统、MySQL。面试前复习用，比啃教材快</li>
+    <li><strong>CodeTop</strong> — 按公司分类的高频面试题。刷题前先看这里定优先级，避免盲目刷</li>
+    <li><strong>OI Wiki</strong> — 算法竞赛知识库，讲得比大多数博客系统</li>
   </ul>
 
-  <h3>资料与文献</h3>
+  <h3>找资源 / 工具</h3>
   <ul>
-    <li><strong>arXiv</strong> — 预印本论文，看最新研究先来这里</li>
-    <li><strong>IEEE Xplore</strong> — 工程类正式发表论文</li>
-    <li><strong>中国知网</strong> — 中文文献，写论文查引用</li>
-    <li><strong>HelloGitHub</strong> — 定期推荐有趣的开源项目</li>
-    <li><strong>掘金</strong> — 中文技术社区，实践类文章多</li>
+    <li><strong>iLovePDF</strong> — PDF 合并、压缩、转格式。论文排版时高频用</li>
+    <li><strong>wallhaven</strong> — 高质量壁纸站，按标签筛。比搜索引擎找图靠谱</li>
+    <li><strong>remove.bg</strong> — 一键抠背景，做演示图时省事</li>
+    <li><strong>Kaggle</strong> — 数据集和 notebook。学机器学习时找练手数据</li>
   </ul>
 
-  <h2 id="s7">一点原则</h2>
+  <h3>看论文 / 长文</h3>
+  <ul>
+    <li><strong>arXiv</strong> — 预印本，看最新研究先来这里</li>
+    <li><strong>lintsinghua.github.io</strong> — 有人写的 Claude Code 架构深度剖析，值得读</li>
+    <li><strong>Hellogithub</strong> — 定期推荐有趣的开源项目</li>
+  </ul>
 
-  <p>装软件这件事，我慢慢形成了一个习惯：<strong>先想清楚要解决什么问题，再去找工具</strong>。反过来（看到推荐就装）的结果是硬盘塞满、菜单栏拥挤、每次重装系统都要重来一遍。</p>
+  <h2 id="s6">五、一点原则</h2>
 
-  <p>所以现在我会把每个软件的「为什么留着」写进 dotfiles。三个月没打开过的，删掉。留下来的每个都能说出用途。</p>
+  <p>写这份清单的过程本身比清单有用。我一边写一边问自己「为什么留着它」，答不上来的就删了——这轮删掉了 6 个。</p>
 
-  <blockquote>工具的多少不代表能力，能说清楚为什么留着它才是。</blockquote>
+  <p>现在留下的每个都能说出：<strong>什么场景下我会打开它</strong>。说不出这个的，要么是我忘了它存在，要么它本来就不该装。</p>
 
-  <hr>
-
-  <p style="color:var(--fg3);font-size:14px">完整的软件清单（78 个，含安装方式和 GitHub 地址）在 <a href="https://github.com/Torricelli0/dotfiles">dotfiles 仓库</a> 的 <code>APPS-CATALOG.md</code>。</p>
+  <blockquote>工具的多少不代表能力。能说清楚「为什么留着它」，才算真的在用。</blockquote>
 
 </article>
 
@@ -142,10 +156,9 @@
   <a href="#s1">写在前面</a>
   <a href="#s2">桌面软件</a>
   <a href="#s3">下载与网络</a>
-  <a href="#s4">笔记与知识管理</a>
-  <a href="#s5">浏览器扩展</a>
-  <a href="#s6">收藏的网站</a>
-  <a href="#s7">一点原则</a>
+  <a href="#s4">浏览器扩展</a>
+  <a href="#s5">收藏的网站</a>
+  <a href="#s6">一点原则</a>
 </aside>
 
 <footer>

@@ -38,8 +38,16 @@ h2{font-size:26px;letter-spacing:-.6px}
 /* 正文排版：只有这几种，够用且统一 */
 h2{font-size:24px;font-weight:600;letter-spacing:-.4px;
   margin:56px 0 18px;padding-top:8px}
-h3{font-size:18px;font-weight:600;margin:36px 0 12px;color:var(--fg2)}
-p{margin:0 0 20px;font-size:16px;color:var(--fg2)}
+h3{font-size:19px;font-weight:600;margin:52px 0 18px;color:var(--fg);
+  letter-spacing:-.2px;padding-bottom:10px;border-bottom:1px solid var(--bd)}
+h3:first-of-type{margin-top:36px}
+/* 软件名用品牌蓝，破折号后的说明保持白色 */
+h3 .swname{color:var(--brand)}
+h3 .swdesc{color:var(--fg);font-weight:600}
+p{margin:0 0 18px;font-size:16px;color:var(--fg2);line-height:1.9}
+/* 软件介绍内部三段（痛点/怎么解决/为什么是它）之间更紧凑，段与段之间更松 */
+p + p{margin-top:0}
+h3 + p{margin-top:0}
 a{color:var(--brand);text-decoration:none;border-bottom:1px solid rgba(103,153,254,.4)}
 a:hover{border-color:var(--brand)}
 strong{color:var(--fg);font-weight:600}
