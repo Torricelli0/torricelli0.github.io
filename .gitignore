@@ -1,0 +1,18 @@
+# Jekyll 构建产物
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 依赖 / 锁文件
+Gemfile.lock
+node_modules/
+
+# 密钥 / 隐私
+.env
+*_token.txt
