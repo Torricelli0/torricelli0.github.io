@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeepSeek | Into the Unknown — 高精度复刻</title>
+<style>
+/* 真实字体：从 deepseek.com 下载的 DM Sans */
+@font-face{font-family:"DM Sans";font-weight:400;font-style:normal;font-display:swap;src:url("fonts/dm-sans-400.woff2") format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:500;font-style:normal;font-display:swap;src:url("fonts/dm-sans-500.woff2") format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;font-style:normal;font-display:swap;src:url("fonts/dm-sans-700.woff2") format("woff2")}
+
+:root{
+  --ink:#1a1d29;       /* deepseek 标题深蓝黑 */
+  --muted:#6b7280;
+  --blue:#4d6bfe;      /* logo/强调蓝 */
+  --line:rgba(26,29,41,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,sans-serif;
+  color:var(--ink);background:#f9f8f8;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* 多层光晕：deepseek 原站是顶部渐变 + 两团柔光 */
+.stage{position:relative;min-height:100vh;overflow:hidden;isolation:isolate}
+.bg-grad{position:absolute;inset:0;z-index:-3;
+  background:linear-gradient(180deg,#9cc1e7 0%,rgba(250,250,250,0) 100%);
+  opacity:.55}
+.glow-a,.glow-b{position:absolute;border-radius:50%;z-index:-2;filter:blur(60px)}
+.glow-a{width:520px;height:520px;left:-140px;top:120px;
+  background:radial-gradient(circle,rgba(147,178,232,.55),transparent 70%)}
+.glow-b{width:620px;height:520px;right:-100px;top:-80px;
+  background:radial-gradient(circle,rgba(176,200,240,.45),transparent 70%)}
+.grid{position:absolute;inset:0;z-index:-1;
+  background-image:linear-gradient(to right,rgba(26,29,41,.045) 1px,transparent 1px),
+                   linear-gradient(to bottom,rgba(26,29,41,.045) 1px,transparent 1px);
+  background-size:84px 84px;
+  mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 78%)}
+
+/* 导航 */
+.nav{max-width:1240px;margin:0 auto;padding:26px 40px;
+ display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:9px;font-size:21px;font-weight:700;color:var(--blue);letter-spacing:-.5px}
+.logo svg{width:26px;height:26px}
+.nav-right{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--ink)}
+.lang{display:flex;border:1px solid rgba(26,29,41,.12);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.5)}
+.lang span{padding:6px 13px;cursor:pointer}
+.lang span.on{background:rgba(255,255,255,.9);font-weight:500}
+
+/* Hero */
+.hero{max-width:900px;margin:0 auto;text-align:center;padding:120px 24px 0}
+.notice{font-size:13.5px;color:var(--muted);line-height:1.65;max-width:640px;margin:0 auto 34px}
+.notice::before{content:"✦";color:var(--blue);margin-right:8px}
+h1{font-size:68px;font-weight:500;letter-spacing:-2.5px;margin:0 0 48px;line-height:1.1}
+
+/* 输入框：玻璃拟态 */
+.composer{max-width:900px;margin:0 auto;background:rgba(255,255,255,.62);
+ backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+ border:1px solid rgba(255,255,255,.85);
+ border-radius:22px;padding:22px 24px 18px;text-align:left;
+ box-shadow:0 8px 32px rgba(30,50,100,.06),inset 0 1px 0 rgba(255,255,255,.9)}
+.ph{font-size:15px;color:#9aa0ab;margin-bottom:60px}
+.tools{display:flex;align-items:center;gap:10px}
+.chip{border:1px solid rgba(26,29,41,.10);border-radius:999px;
+ padding:7px 14px;font-size:12.5px;color:var(--ink);background:rgba(255,255,255,.6);
+ display:flex;align-items:center;gap:6px}
+.chip.blue{border-color:rgba(77,107,254,.25);background:rgba(77,107,254,.08);color:var(--blue)}
+.send{margin-left:auto;width:38px;height:38px;border:0;border-radius:50%;
+ background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+/* 底部三个入口 */
+.entries{max-width:900px;margin:30px auto 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.entry{border:1px solid rgba(26,29,41,.12);border-radius:999px;padding:11px 20px;
+ font-size:13px;color:var(--ink);background:rgba(255,255,255,.55);cursor:pointer;
+ display:flex;align-items:center;gap:8px;transition:.2s}
+.entry:hover{background:#fff;border-color:rgba(26,29,41,.22)}
+
+/* 底部导航（原站也有）*/
+.footnav{max-width:1240px;margin:90px auto 0;padding:30px 40px;
+ border-top:1px solid var(--line);display:flex;gap:28px;font-size:12.5px;color:var(--muted);justify-content:center;flex-wrap:wrap}
+
+@media(max-width:768px){
+  h1{font-size:40px;letter-spacing:-1px}
+  .nav{padding:20px}
+  .hero{padding:60px 18px 0}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="bg-grad"></div><div class="glow-a"></div><div class="glow-b"></div><div class="grid"></div>
+
+  <nav class="nav">
+    <div class="logo">
+      <svg viewBox="0 0 28 28" fill="none"><path d="M4 9c4-6 14-7 19-3-2 1-4 1-6 1 3 2 5 5 5 9-3-4-7-6-12-5-3 .5-5 2-6 4V9z" fill="currentColor"/></svg>
+      deepseek
+    </div>
+    <div class="nav-right">
+      <span>Get App</span>
+      <div class="lang"><span>中文</span><span class="on">EN</span></div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="notice">DeepSeek V4.1 Flash has been updated to version V4.1-Flash-1017, with significantly enhanced project development capabilities, enabling tasks to be completed at lower cost and faster speed. Additionally, the API now supports web search and fetch.</p>
+    <h1>Into the Unknown</h1>
+
+    <div class="composer">
+      <div class="ph">Ask anything, explore together</div>
+      <div class="tools">
+        <span class="chip">⚙ DeepThink</span>
+        <span class="chip blue">🌐 Search</span>
+        <div class="send">↑</div>
+      </div>
+    </div>
+
+    <div class="entries">
+      <div class="entry">💬 Chat with DeepSeek</div>
+      <div class="entry">⌘ API Platform</div>
+      <div class="entry">▣ Harness Desktop</div>
+    </div>
+  </section>
+
+  <nav class="footnav">
+    <span>DeepSeek Web</span><span>DeepSeek Harness</span>
+    <span>API Platform</span><span>API Docs</span>
+    <span>Downloads</span><span>Join Us</span>
+  </nav>
+</div>
+</body>
+</html>
