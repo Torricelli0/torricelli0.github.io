@@ -16,3 +16,4 @@ node_modules/
 # 密钥 / 隐私
 .env
 *_token.txt
+posts/ai-slang-render.png
