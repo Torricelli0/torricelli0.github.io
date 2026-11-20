@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>关于 AI，你不知道的几个黑话 — TORRICELLI / LAB</title>
+<link rel="stylesheet" href="../assets/post-cosmic.css?v=5">
+<meta name="tags" content="AI,黑话,破甲,反代,逆向,笔记">
+</head><body>
+
+<div class="orbit-bg">
+<svg viewBox="0 0 1100 1000" preserveAspectRatio="xMidYMid slice">
+  <ellipse cx="550" cy="420" rx="660" ry="250" fill="none" stroke="#3A63B8" stroke-width="0.7" opacity="0.4" transform="rotate(-16 550 420)"/>
+  <ellipse cx="550" cy="480" rx="800" ry="340" fill="none" stroke="#3A63B8" stroke-width="0.5" opacity="0.28" transform="rotate(11 550 480)"/>
+  <ellipse cx="550" cy="500" rx="520" ry="190" fill="none" stroke="#6E9AE8" stroke-width="0.5" opacity="0.32" transform="rotate(-34 550 500)"/>
+  <circle cx="190" cy="330" r="3" fill="#6E9AE8" opacity="0.65"/>
+  <circle cx="900" cy="640" r="2.5" fill="#6E9AE8" opacity="0.5"/>
+  <circle cx="700" cy="150" r="2" fill="#F7F6F3" opacity="0.35"/>
+  <circle cx="300" cy="820" r="2" fill="#F7F6F3" opacity="0.3"/>
+</svg>
+</div>
+
+<header>
+  <div class="logo">TORRICELLI / LAB <span>NOTES</span></div>
+  <a class="back" href="../index.html">← 返回首页</a>
+</header>
+
+<div class="hero">
+  <div class="planet"></div>
+  <div class="kicker">No. 004 · Note</div>
+  <h1>关于 AI，你不知道的<br><em>几个黑话</em></h1>
+  <p class="dek">prompt、agent 这种词已经被讲烂了。但还有一批词藏在工具的角落：破甲、反代、中转、逆向。懂的人天天用，不懂的人连搜索词都想不出来。这篇只讲它们是<strong>什么</strong>、<strong>有什么用</strong>。</p>
+  <div class="rule-dot"><span></span><i></i><i></i><i></i><span></span></div>
+  <div class="tags"><span>AI</span><span>黑话</span><span>破甲</span><span>反代</span><span>逆向</span></div>
+</div>
+
+<article>
+
+<nav class="toc">
+  <a href="#s1">一、破甲</a>
+  <a href="#s2">二、反代</a>
+  <a href="#s3">三、中转</a>
+  <a href="#s4">四、逆向</a>
+  <a href="#s5">五、为什么都和 AI 有关</a>
+</nav>
+
+<h2 id="s1"><span class="h2num">一、</span>破甲：给 AI 拆盔甲</h2>
+
+<p>AI 出厂时穿着一层<strong>安全护栏</strong>——就是让你看到"抱歉，我不能"的那层东西。<strong>破甲</strong>就是想办法让 AI 少拒绝。英文圈叫 jailbreak，中文圈叫破甲、越狱、脱敏。</p>
+
+<p>很多人以为这是黑客技术。其实一个真实的破甲插件，拆开看只做三件事：</p>
+
+<ul>
+  <li><strong>把规则塞进系统提示词</strong>：普通用户只能在对话框输入，插件能改"给模型的最高指令"，而且同一份规则注入两次，更稳</li>
+  <li><strong>盯着模型的回答</strong>：只看开头 160 个字，找"抱歉，我不能""作为 AI 语言模型"这类词，找到就判定失败</li>
+  <li><strong>识别软拒绝</strong>：模型不说"不"，而是说"我可以给你防御方案""建议在授权环境用"，它也能认出来</li>
+</ul>
+
+<p>所以<strong>破甲不是破解算法，是提示词工程的一个分支</strong>：目标从"让 AI 做得更好"变成"让 AI 少拒绝"。</p>
+
+<h2 id="s2"><span class="h2num">二、</span>反代：AI 世界的转接头</h2>
+
+<p>假设你买了 ChatGPT Plus，想让 Claude Code 也用 GPT。问题在于：Claude Code 只说 Anthropic 的语言，GPT 只听 OpenAI 的语言。<strong>反代</strong>就是中间加一个翻译官。</p>
+
+<p>它的工作流程是这样的：</p>
+
+<ul>
+  <li>Claude Code 说话 → 网关翻译成 OpenAI 格式 → GPT 回答 → 网关翻译回来 → Claude Code 以为自己在跟 Claude 聊</li>
+  <li>全程不用改 Claude Code 一行代码</li>
+</ul>
+
+<p>最近有个开源项目把这件事做到了极致：<strong>Magpie</strong>（GitHub 约 3.9 万星）。它在本机跑一个网关，所有 AI 工具都连它：</p>
+
+<ul>
+  <li>Claude Code 用 GPT，Codex 用 Kimi</li>
+  <li>一个订阅的额度，所有工具共享——这叫<strong>池化</strong></li>
+  <li>某个账号额度用完，自动换下一个，工具那边毫无感觉</li>
+</ul>
+
+<p>打个比方：以前的 AI 工具像每个房间装一个专用插座；Magpie 像整栋楼的配电箱。<strong>同一个思想，不同范围。</strong></p>
+
+<h2 id="s3"><span class="h2num">三、</span>中转：反代的"生意版"</h2>
+
+<p>反代是自己家里用的，<strong>中转</strong>是把它做成了一门生意。</p>
+
+<p>你可能在网上见过"API 中转站"——价格比官方便宜，还能一个 key 调用好几家模型。它背后做的事和反代一样：<strong>收你的请求，转发给真正的模型厂商，再把结果返给你</strong>。</p>
+
+<p>为什么要用它？原因很实际：</p>
+
+<ul>
+  <li><strong>方便</strong>：一个 key 调遍所有模型，不用每家注册</li>
+  <li><strong>便宜</strong>：有些渠道能拿到折扣额度</li>
+  <li><strong>绕开限制</strong>：某些地区或某些支付方式用不了官方服务</li>
+</ul>
+
+<p>代价是什么？<strong>你的请求内容经过了第三方的手。</strong> 所以中转适合跑不敏感的任务，真正机密的东西不要往里塞。</p>
+
+<p>反代和中转的关系：<strong>反代是自己搭的桥，中转是别人搭好收过路费的桥。</strong></p>
+
+<h2 id="s4"><span class="h2num">四、</span>逆向：从结果倒推原理</h2>
+
+<p>前面三个词都是"用 AI"，<strong>逆向</strong>是"拆 AI 和拆软件"——从成品倒推它是怎么做出来的。</p>
+
+<p>它本来是软件安全领域的老手艺：把编译好的程序拆回汇编、看懂逻辑、找出原理。现在 AI 圈借用了这个词，出现两种新用法：</p>
+
+<ul>
+  <li><strong>AI 辅助逆向</strong>：让 AI 读反汇编结果、解释一段汇编在干什么、写分析脚本。代表作是 GitHub 上星标 46 万的 <strong>REA</strong>——它本身不是逆向工具，是逆向工具的外脑</li>
+  <li><strong>逆向 AI 本身</strong>：通过大量输入输出，倒推一个模型的系统提示词、训练偏好、护栏规则。这其实是破甲的"温和版"——不硬闯，靠观察推断</li>
+</ul>
+
+<p>那批真正因逆向而火的项目也值得知道：<strong>Wine</strong> 逆向 Windows API 让 Linux 能跑 Windows 程序，<strong>ReactOS</strong> 逆向重实现一个开源 Windows，<strong>Proton</strong> 让 Steam Deck 能玩 Windows 游戏。它们都是<strong>重实现功能</strong>，不是照抄代码——这是合法的边界。</p>
+
+<h2 id="s5"><span class="h2num">五、</span>为什么都和 AI 有关</h2>
+
+<p>你可能会问：破甲、反代、中转是 AI 时代的新词，逆向是个老手艺，为什么会被放在一起？</p>
+
+<p>因为它们本质上都在回答同一个问题：<strong>当能力和资源都被别人掌控时，使用者怎么争取主动权。</strong></p>
+
+<ul>
+  <li><strong>破甲</strong>：模型说"不行"，你想让它说"可以"——争取<strong>能力</strong>的主动权</li>
+  <li><strong>反代 / 中转</strong>：模型只认自己的协议和账号，你想换个用法——争取<strong>访问方式</strong>的主动权</li>
+  <li><strong>逆向</strong>：只给你一个成品，你想知道它怎么做的——争取<strong>认知</strong>的主动权</li>
+</ul>
+
+<p>这也是为什么这些词会在 AI 时代集中爆发：模型越来越强、越来越集中、越来越黑盒，于是"怎么绕过去、怎么看懂它、怎么为我所用"就成了一整套新的民间技术。</p>
+
+<p>知道这些词不是为了炫技，是为了出问题时知道该搜什么。<strong>每一个词背后，都有一整片世界。</strong></p>
+
+<p class="tagline">本文只讲概念与现状，不提供任何可直接复用的越狱载荷、破解工具或绕过方法。</p>
+
+</article>
+
+<script>
+(function(){
+  var secs = document.querySelectorAll('article h2[id]');
+  var links = document.querySelectorAll('.toc a');
+  if (!secs.length || !links.length) return;
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 100;
+        window.scrollTo({top: top, behavior: 'smooth'});
+        history.replaceState(null, '', '#' + id);
+        links.forEach(function(x){ x.classList.remove('active'); });
+        a.classList.add('active');
+      }
+    });
+  });
+  function onScroll(){
+    var cur = '';
+    secs.forEach(function(s){ if (s.getBoundingClientRect().top < 160) cur = s.id; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body></html>
