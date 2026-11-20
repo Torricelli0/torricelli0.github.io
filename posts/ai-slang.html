@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>关于 AI，你不知道的几个黑话 — TORRICELLI / LAB</title>
 <link rel="stylesheet" href="../assets/post-cosmic.css?v=5">
-<meta name="tags" content="AI,黑话,破甲,反代,逆向,笔记">
+<meta name="tags" content="AI,黑话,破甲,反代,逆向,无头,Vibe Coding,笔记">
 </head><body>
 
 <div class="orbit-bg">
@@ -26,9 +26,9 @@
   <div class="planet"></div>
   <div class="kicker">No. 004 · Note</div>
   <h1>关于 AI，你不知道的<br><em>几个黑话</em></h1>
-  <p class="dek">prompt、agent 这种词已经被讲烂了。但还有一批词藏在工具的角落：破甲、反代、中转、逆向。懂的人天天用，不懂的人连搜索词都想不出来。这篇只讲它们是<strong>什么</strong>、<strong>有什么用</strong>。</p>
+  <p class="dek">prompt、agent 这种词已经被讲烂了。但还有一批词藏在工具的角落：破甲、反代、中转、逆向、无头编排、Vibe Coding。懂的人天天用，不懂的人连搜索词都想不出来。这篇只讲它们是<strong>什么</strong>、<strong>有什么用</strong>。</p>
   <div class="rule-dot"><span></span><i></i><i></i><i></i><span></span></div>
-  <div class="tags"><span>AI</span><span>黑话</span><span>破甲</span><span>反代</span><span>逆向</span></div>
+  <div class="tags"><span>AI</span><span>黑话</span><span>破甲</span><span>反代</span><span>逆向</span><span>Vibe Coding</span></div>
 </div>
 
 <article>
@@ -38,7 +38,9 @@
   <a href="#s2">二、反代</a>
   <a href="#s3">三、中转</a>
   <a href="#s4">四、逆向</a>
-  <a href="#s5">五、为什么都和 AI 有关</a>
+  <a href="#s5">五、无头与编排</a>
+  <a href="#s6">六、Vibe Coding</a>
+  <a href="#s7">七、为什么都和 AI 有关</a>
 </nav>
 
 <h2 id="s1"><span class="h2num">一、</span>破甲：给 AI 拆盔甲</h2>
@@ -107,9 +109,38 @@
 
 <p>那批真正因逆向而火的项目也值得知道：<strong>Wine</strong> 逆向 Windows API 让 Linux 能跑 Windows 程序，<strong>ReactOS</strong> 逆向重实现一个开源 Windows，<strong>Proton</strong> 让 Steam Deck 能玩 Windows 游戏。它们都是<strong>重实现功能</strong>，不是照抄代码——这是合法的边界。</p>
 
-<h2 id="s5"><span class="h2num">五、</span>为什么都和 AI 有关</h2>
+<h2 id="s5"><span class="h2num">五、</span>无头与编排：把 AI 藏到幕后</h2>
 
-<p>你可能会问：破甲、反代、中转是 AI 时代的新词，逆向是个老手艺，为什么会被放在一起？</p>
+<p>前面几个词都在讲"怎么让 AI 听我的"。这一节反过来：<strong>让 AI 消失，只留下它在替你干活。</strong></p>
+
+<p>QQ 机器人圈子里有两个词很典型：<strong>NapCat</strong> 和 <strong>AstrBot</strong>。它们分工清楚——</p>
+
+<ul>
+  <li><strong>NapCat 是"管道"</strong>：它把 QQ 客户端的收发消息能力抽出来，翻译成通用协议。它没有界面，安静跑在后台，只负责数据的进和出。这叫<strong>无头</strong>（headless）——不要脸，只要能力</li>
+  <li><strong>AstrBot 是"大脑"</strong>：它接到消息后判断意图、调用大模型、挂插件、管上下文，再把回复丢回管道。这叫<strong>编排</strong>（orchestration）——AI 不直接面对人，而是被调度</li>
+</ul>
+
+<p>这和第二节的反代是<strong>同一个思想的另一层</strong>：反代翻译的是 API 协议，NapCat 翻译的是平台消息。一个让工具连上模型，一个让聊天框连上工具。</p>
+
+<h2 id="s6"><span class="h2num">六、</span>Vibe Coding：AI 不写文章了，它写代码</h2>
+
+<p>最近在视频圈爆火的一个词。<strong>Vibe Coding</strong> 直译是"氛围编程"——你不管代码怎么写，只管说要什么效果，AI 直接把可运行的代码吐出来。</p>
+
+<p>最典型的应用是那种讲知识的动画视频（网友叫"开智的小曲"）。很多人以为是 Sora、可灵这类视频模型生成的，其实不是：</p>
+
+<ul>
+  <li>你给 AI 一段科普文案，它直接写出<strong>前端网页代码</strong>——分镜、排版、配色、动画全在里面</li>
+  <li>再用 <strong>Remotion</strong> 这类工具，把网页逐帧渲染成视频。本质上，视频是"代码跑出来的"，不是"模型画出来的"</li>
+  <li>配上 TTS 语音和字幕，时间轴由代码对齐</li>
+</ul>
+
+<p>这条路的生产力高得离谱：改一句话重新渲染就行，不用重拍、不用剪辑。</p>
+
+<blockquote>无头 + 编排把 AI 藏起来，你只看到结果；Vibe Coding 把 AI 推到台前，代码就是它的作品。一个做减法，一个做加法。</blockquote>
+
+<h2 id="s7"><span class="h2num">七、</span>为什么都和 AI 有关</h2>
+
+<p>你可能会问：这些词有的是 AI 时代的新词，逆向是个老手艺，为什么会被放在一起？</p>
 
 <p>因为它们本质上都在回答同一个问题：<strong>当能力和资源都被别人掌控时，使用者怎么争取主动权。</strong></p>
 
@@ -117,6 +148,8 @@
   <li><strong>破甲</strong>：模型说"不行"，你想让它说"可以"——争取<strong>能力</strong>的主动权</li>
   <li><strong>反代 / 中转</strong>：模型只认自己的协议和账号，你想换个用法——争取<strong>访问方式</strong>的主动权</li>
   <li><strong>逆向</strong>：只给你一个成品，你想知道它怎么做的——争取<strong>认知</strong>的主动权</li>
+  <li><strong>无头 / 编排</strong>：不想让 AI 站在台前，只想让它安静干活——争取<strong>控制权</strong></li>
+  <li><strong>Vibe Coding</strong>：不想手写代码，只想说要什么——争取<strong>生产力</strong></li>
 </ul>
 
 <p>这也是为什么这些词会在 AI 时代集中爆发：模型越来越强、越来越集中、越来越黑盒，于是"怎么绕过去、怎么看懂它、怎么为我所用"就成了一整套新的民间技术。</p>
