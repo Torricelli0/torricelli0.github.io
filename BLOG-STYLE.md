@@ -200,3 +200,10 @@ posts/*.html             引用 ../assets/post-cosmic.css
 | **B · Cosmic** | Perplexity Comet 发布站、《2001 太空漫游》片头、老式天文图录 |
 
 两者都属于「Developer Aesthetic」大方向，但 B 更偏**出版级排版**。
+
+
+## 文章列表置顶规则（重要）
+
+- `posts/rebuilding-blog.html`（这个博客正在重新整理）**永远固定在首页列表第一位**。
+- 新增文章时，插在它后面，不要插在它前面。
+- 原因：它是博客的"常驻状态说明"，不是按时间排序的普通文章。
