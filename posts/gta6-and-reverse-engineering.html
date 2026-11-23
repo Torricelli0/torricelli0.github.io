@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>从 GTA VI 到逆向工程：当 AI 让灰色的事变得容易 — TORRICELLI / LAB</title>
+<link rel="stylesheet" href="../assets/post-cosmic.css?v=6"><meta name="tags" content="逆向工程,AI,思考,游戏">
+</head><body>
+
+<div class="orbit-bg">
+<svg viewBox="0 0 1100 1000" preserveAspectRatio="xMidYMid slice">
+  <ellipse cx="550" cy="420" rx="660" ry="250" fill="none" stroke="#3A63B8" stroke-width="0.7" opacity="0.4" transform="rotate(-16 550 420)"/>
+  <ellipse cx="550" cy="480" rx="800" ry="340" fill="none" stroke="#3A63B8" stroke-width="0.45" opacity="0.28" transform="rotate(11 550 480)"/>
+  <ellipse cx="550" cy="500" rx="520" ry="190" fill="none" stroke="#6E9AE8" stroke-width="0.45" opacity="0.3" transform="rotate(-34 550 500)"/>
+  <circle cx="190" cy="330" r="2.5" fill="#6E9AE8" opacity="0.6"/>
+  <circle cx="900" cy="640" r="2" fill="#6E9AE8" opacity="0.45"/>
+  <circle cx="760" cy="250" r="1.8" fill="#6E9AE8" opacity="0.5"/>
+</svg>
+</div>
+
+<header>
+  <div class="logo">TORRICELLI / LAB <span>NOTES</span></div>
+  <a class="back" href="../index.html">← 返回首页</a>
+</header>
+
+<div class="hero">
+  <div class="planet"></div>
+  <div class="kicker">No. 005 · Thinking</div>
+  <h1>从 GTA VI<br>到<em>逆向工程</em></h1>
+  <p class="dek">一个把 Xbox 版游戏"翻译"到 PC 的项目，让很多人第一次听说"静态重编译"。它和破解、反编译、模拟器的边界在哪里？当 AI 能把原本需要十年的逆向工作压缩到几个月，我们该用什么态度面对这件事。</p>
+  <div class="rule-dot"><span></span><i></i><i></i><i></i><span></span></div>
+  <div class="tags"><span>逆向工程</span><span>AI</span><span>游戏</span><span>思考</span></div>
+</div>
+
+<article>
+
+<h2 id="s1"><span class="h2num">一、</span>这个项目到底在做什么</h2>
+
+<p>最近有个叫 <strong>Leonida</strong> 的项目很火：它想让 Xbox Series 版的 GTA VI 在 Windows 上"原生运行"。</p>
+
+<p>它用的方法不是模拟器，而是<strong>静态重编译</strong>（static recompilation）。原理说出来其实很漂亮：</p>
+
+<ul>
+  <li>Xbox 的 CPU 和 PC 一样是 x86-64，所以游戏代码可以直接跑，不用逐条翻译指令；</li>
+  <li>Xbox 的系统 API（微软的 GDK、D3D12）PC 上没有，于是用代码重新实现一遍；</li>
+  <li>Xbox 的 RDNA2 着色器，翻译成 Vulkan 能用的 SPIR-V；</li>
+  <li>模型、纹理、音频，从<strong>你自己那份游戏副本</strong>里读。</li>
+</ul>
+
+<p>全程在你自己的电脑上完成。仓库里没有游戏本体、没有密钥、没有可执行文件——它只提供"翻译工具"。</p>
+
+<blockquote>简单说：它没有破解保护，没有提供盗版，只是让一份合法的主机游戏，换一种方式在你的电脑上运行。</blockquote>
+
+<h2 id="s2"><span class="h2num">二、</span>反编译、重编译、破解、模拟器：四个容易混的词</h2>
+
+<p>这个领域最容易被混淆的，恰恰是几个名字很像的词。</p>
+
+<h3>反编译（Decompilation）</h3>
+<p>机器码 → 人能读的源码。比如那款著名的《塞尔达传说：时之笛》PC 移植（Ship of Harkinian），就是把 N64 的机器码一点点还原成 C 代码，再重新编译。产物是干净的源码。</p>
+
+<h3>静态重编译（Static Recompilation）</h3>
+<p>机器码 → 另一种平台的机器码或中间表示，不需要还原成人类可读的源码。Leonida 就是这个。</p>
+
+<h3>模拟器（Emulation）</h3>
+<p>逐条解释主机指令，像同声传译。慢，但通用。</p>
+
+<h3>破解（Cracking）</h3>
+<p>绕过授权与 DRM。这是唯一一个大家普遍认为"不对"的——因为它偷的不是技术，是付费这道门槛本身。</p>
+
+<p>前三者都重度依赖<strong>逆向工程</strong>（把成品拆开，搞清楚它怎么工作）。逆向本身是中性的：安全研究、恶意软件分析、兼容性适配、考古式移植，都靠它。真正区分性质的，是<strong>目的</strong>——你是在让软件跑到新平台，还是在绕过别人设的付费锁。</p>
+
+<h2 id="s3"><span class="h2num">三、</span>AI 把这个世界的门槛踩平了</h2>
+
+<p>过去逆向是极少数人的手艺：要啃汇编、要懂 GPU 架构、要有数年经验。现在不一样了。</p>
+
+<p>Leonida 的 151 个待合并 PR 里，大量工作是"给 D3D12 的每个接口写 Vulkan 对应实现"、"给 26,503 个着色器做翻译校验"——这类事情，AI 极其擅长。人类定方向、做判断，AI 把重复的体力活吃掉。</p>
+
+<p>同一时间，各种"破甲"类的 agent skill、把 GUI 自动化交给 AI 的工具也冒了出来。它们本来是为了让工具少一点限制、多一点能力，但同一套能力，换个用途就能干灰色的事。</p>
+
+<blockquote>AI 不生产道德，它只放大使用者的意图。同一把螺丝刀，可以装家具，也可以拆别人的门锁。</blockquote>
+
+<p>这就是这个时代最真实的处境：<strong>做一件事的难度，和这件事该不该做，正在彻底脱钩。</strong></p>
+
+<h2 id="s4"><span class="h2num">四、</span>那我们应该怎么想</h2>
+
+<p>我不打算给出"支持"或"反对"的简单结论。这件事值得更细的分寸。</p>
+
+<p><strong>第一，技术好奇心本身没有错。</strong>把 Xbox 系统 API 重新实现一遍、把着色器翻译到 Vulkan——这是实打实的工程能力，学会的东西是真的。很多伟大的技术都从"不该这么做"的尝试里长出来。</p>
+
+<p><strong>第二，灰色不是无色的。"不提供游戏本体"这种设计，把法律风险挡在了仓库外面，但挡不住一个事实：项目存在的唯一目的，是让另一款商业产品在非授权渠道上跑起来。</strong>规避条款写得再漂亮，也改变不了这一点。</p>
+
+<p><strong>第三，AI 放大的是责任，不是免责声明。</strong>"AI 帮我做的"不能成为理由——机器不会为你的选择负责，会的只有你。</p>
+
+<p>所以我的态度是：<strong>理解它，警惕它，别急着成为它的一部分。</strong>看清楚技术的边界和法律的边界，然后自己决定站在哪一侧。</p>
+
+<h2 id="s5"><span class="h2num">五、</span>写在最后</h2>
+
+<p>这类项目最打动我的，其实不是技术本身，而是它揭示的一个变化：</p>
+
+<p>以前"能不能做"是问题，现在"该不该做"才是问题。当一个高中生也能在 AI 帮助下完成过去一个团队才能做的逆向工程，我们真正需要补上的，不是技术课，是判断课。</p>
+
+<p>技术让人有能力，判断力决定这份能力落在哪里。这大概就是这轮 AI 浪潮，留给每个人的考题。</p>
+
+</article>
+
+<footer>
+  <span>TORRICELLI / LAB</span>
+  <span><a href="../index.html">← 返回首页</a></span>
+</footer>
+</body></html>
